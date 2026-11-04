@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¿CuántoMeLlega? | Cuántos pesos recibes de un pago en dólares</title>
+<meta name="description" content="Compara cuántos pesos mexicanos te llegan de un pago en USD por PayPal, Payoneer, ARQ, BBVA y Wise, según quién te paga (cliente directo; Upwork, Fiverr y Deel solo como información beta). Tarifas publicadas con fecha y fuente.">
+<meta name="theme-color" content="#0b7a4b">
+<link rel="canonical" href="https://cuantomellega.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cuantomellega.github.io/">
+<meta property="og:title" content="¿CuántoMeLlega? ¿Cuántos pesos recibes por un pago en dólares?">
+<meta property="og:description" content="Compara PayPal, Payoneer, ARQ, BBVA y Wise con tarifas publicadas, fecha y fuente. Sin enlaces de afiliado.">
+<meta property="og:locale" content="es_MX">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b7a4b'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-size='40' font-weight='700' text-anchor='middle' fill='white'%3E%24%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#f6f7f4;--card:#fff;--ink:#16211b;--mute:#5d6b63;--line:#e3e8e2;--brand:#0b7a4b;--brand-ink:#fff;--soft:#e8f4ed;--warn:#8a5a00;--warn-bg:#fff6df;--bad:#b3261e;--bad-bg:#fde7e5;--r:16px}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--brand)}
+.wrap{max-width:1040px;margin:0 auto;padding:16px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 16px}
+.logo{font-weight:800;font-size:1.35rem;letter-spacing:-.02em}
+.logo span{color:var(--brand)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.lang button{border:0;background:transparent;padding:6px 14px;font:inherit;font-weight:600;cursor:pointer;color:var(--mute)}
+.lang button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
+h1{font-size:1.5rem;line-height:1.2;margin:0 0 6px;letter-spacing:-.02em}
+.lead{color:var(--mute);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.grid{display:grid;gap:16px}
+label{display:block;font-weight:600;font-size:.9rem;margin-bottom:6px}
+.amount{display:flex;align-items:center;border:2px solid var(--line);border-radius:12px;padding:0 12px;background:#fff}
+.amount:focus-within{border-color:var(--brand)}
+.amount span{font-weight:700;color:var(--mute)}
+.amount input{border:0;outline:0;font:inherit;font-size:1.6rem;font-weight:700;width:100%;padding:10px 8px;background:transparent;min-width:0}
+.rate{margin-top:14px;padding:12px;background:var(--soft);border-radius:12px;font-size:.92rem}
+.rate b{font-size:1.1rem}
+.rate .src{color:var(--mute);font-size:.82rem}
+.rate.err{background:var(--warn-bg);color:var(--warn)}
+.override{margin-top:10px}
+.override input,select{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font:inherit;background:#fff;color:var(--ink)}
+.hint{color:var(--mute);font-size:.82rem;margin:4px 0 0}
+.warn{color:var(--warn);background:var(--warn-bg);border-radius:10px;padding:6px 10px;font-size:.85rem;margin:6px 0 0}
+h2{font-size:1.15rem;margin:0 0 10px}
+.ctl{padding:10px 0;border-top:1px solid var(--line)}
+.ctl.first{border-top:0}
+.ctl .row{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.ctl .name{font-weight:600;font-size:.92rem}
+.ctl .val{font-variant-numeric:tabular-nums;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--brand)}
+.tag{display:inline-block;font-size:.7rem;font-weight:700;padding:1px 8px;border-radius:999px;vertical-align:middle;margin-left:4px;white-space:nowrap}
+.tag.est{background:var(--warn-bg);color:var(--warn)}
+.tag.sup{background:#eceff1;color:#44525a}
+.tag.pub{background:var(--soft);color:var(--brand)}
+.tag.no{background:var(--bad-bg);color:var(--bad)}
+.tog{display:flex;gap:10px;align-items:flex-start;font-weight:600;font-size:.92rem;margin:0}
+.tog input{margin-top:4px;width:18px;height:18px;accent-color:var(--brand)}
+.results{display:grid;gap:12px}
+.rail{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;position:relative}
+.rail.first{border:2px solid var(--brand)}
+.rail.unr{border-style:dashed;margin-top:8px}
+.rail.na{opacity:.85}
+.rail .head{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:flex-start}
+.rank{flex:none;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:800}
+.first .rank{background:var(--brand)}
+.rail .ttl{flex:1 1 150px;min-width:0}
+.rail h3{margin:0;font-size:1.05rem}
+.rail .sub{color:var(--mute);font-size:.85rem}
+.got{margin-left:auto;text-align:right}
+.got .n{font-size:1.4rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.got .n.bad{color:var(--bad);font-size:1.15rem}
+.got .u{font-size:.78rem;color:var(--mute)}
+.loss{margin:10px 0 6px;font-weight:700;color:var(--bad);font-variant-numeric:tabular-nums}
+.loss.zero{color:var(--brand)}
+.loss small{font-weight:500;color:var(--mute);display:block}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:6px 0 10px}
+.bar i{display:block;height:100%;background:var(--brand)}
+table.bd{width:100%;border-collapse:collapse;font-size:.88rem;font-variant-numeric:tabular-nums}
+table.bd td{padding:3px 0;border-top:1px dashed var(--line);vertical-align:top}
+table.bd td:last-child{text-align:right;white-space:nowrap;padding-left:8px}
+.extra{margin-top:8px;font-size:.86rem;background:var(--warn-bg);color:#5c3d00;border-radius:10px;padding:8px 10px}
+.legal{margin-top:10px;font-size:.86rem;background:var(--warn-bg);color:#5c3d00;border-radius:10px;padding:8px 10px}
+.legal b{font-weight:700}
+.notes{margin:8px 0 0;padding-left:18px;color:var(--mute);font-size:.83rem}
+.ver{margin-top:10px;font-size:.8rem;color:var(--mute);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.rule{background:var(--soft);border-radius:12px;padding:10px 12px;font-size:.88rem;margin-top:12px}
+.disc{background:var(--warn-bg);color:#5c3d00;border-radius:12px;padding:12px;font-size:.88rem}
+.pill{display:inline-block;background:#fff;border:1px dashed var(--mute);color:var(--mute);border-radius:999px;padding:6px 14px;font-weight:600;font-size:.9rem}
+ul.log{margin:0;padding-left:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;margin:0;font-weight:600}
+.chip input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer;left:0;top:0}
+.chip span{display:inline-block;padding:10px 14px;border:2px solid var(--line);border-radius:999px;font-size:.92rem;background:#fff;line-height:1.2}
+.chip input:checked+span{border-color:var(--brand);background:var(--soft);color:var(--brand)}
+.chip input:focus-visible+span{outline:3px solid #7bc6a1;outline-offset:2px}
+.pnote{margin-top:12px;font-size:.86rem;background:var(--warn-bg);color:#5c3d00;border-radius:12px;padding:10px 12px}
+.pcost{margin-top:10px;font-size:.85rem;background:var(--soft);border-radius:12px;padding:10px 12px}
+.pcost h3{margin:0 0 6px;font-size:.92rem}
+.pcost ul{margin:0;padding-left:18px}
+.pcost .ver{margin-top:8px}
+.tag.chk{background:#fff0c2;color:#6b4a00;border:1px solid #e3c15a}
+.tag.okp{background:var(--soft);color:var(--brand)}
+.pn{margin-top:8px;font-size:.84rem;color:#4a3a10;background:#fffaf0;border-left:3px solid #e3c15a;border-radius:6px;padding:6px 10px}
+.pn.okn{background:#f2faf5;border-left-color:var(--brand);color:var(--ink)}
+.year{margin-bottom:12px}
+.year input[type=number]{width:100%;border:2px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:1.1rem;font-weight:700;background:#fff;color:var(--ink)}
+.year input[type=number]:focus{outline:0;border-color:var(--brand)}
+.yhead{margin-top:12px;font-size:1.12rem;font-weight:800;line-height:1.3;color:var(--bad)}
+.yhead small{display:block;font-weight:500;color:var(--mute);font-size:.82rem;margin-top:4px}
+.yact{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.btn{border:0;background:var(--brand);color:var(--brand-ink);font:inherit;font-weight:700;padding:10px 18px;border-radius:999px;cursor:pointer;min-height:44px}
+.btn:focus-visible{outline:3px solid #7bc6a1;outline-offset:2px}
+.nolist{margin-top:4px}
+.nolist ul{margin:6px 0 0;padding-left:18px;font-size:.86rem;color:var(--mute)}
+footer{color:var(--mute);font-size:.82rem;padding:18px 0 40px;display:grid;gap:6px}
+[hidden]{display:none!important}
+details.more{margin-top:10px;border-top:1px dashed var(--line);padding-top:6px}
+details.more>summary,details.chg>summary{cursor:pointer;font-weight:700;font-size:.88rem;color:var(--brand);min-height:36px;display:flex;align-items:center}
+details.more[open]>summary{margin-bottom:6px}
+details.chg{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:8px 16px}
+details.chg ul.log{margin:6px 0 10px;font-size:.88rem}
+.tie{background:var(--soft);border-left:3px solid var(--brand);border-radius:8px;padding:8px 12px;font-size:.88rem;font-weight:600}
+.topl{background:var(--soft);color:var(--brand);border:1px solid var(--brand);white-space:normal;display:block;margin:4px 0 0;border-radius:10px;padding:2px 8px;max-width:100%}
+.rail.info{padding:14px 16px}
+.rail.info p{margin:8px 0 0;font-size:.9rem}
+.rail.info .ver{margin-top:8px}
+.betan{background:#fff0c2;color:#4a3a10;border:1px solid #e3c15a;border-radius:12px;padding:10px 12px;font-size:.9rem;font-weight:600}
+.btn.alt{background:#fff;color:var(--brand);border:2px solid var(--brand)}
+.rp{color:var(--mute);font-size:.78rem}
+@media(max-width:859px){
+ .grid.main>.side{display:contents}
+ #pyCard{order:1}#inCard{order:2}#resSec{order:3}#asCard{order:4}
+}
+@media(min-width:860px){
+ .wrap{padding:24px}
+ h1{font-size:2rem}
+ .grid.main{grid-template-columns:360px 1fr;align-items:start}
+ .side{position:sticky;top:16px;display:grid;gap:16px}
+ .lower{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <header class="top">
+  <div class="logo">¿Cuánto<span>MeLlega</span>?</div>
+  <div class="lang" role="group" aria-label="Idioma / Language">
+   <button id="bES" aria-pressed="true" type="button">ES</button>
+   <button id="bEN" aria-pressed="false" type="button">EN</button>
+  </div>
+ </header>
+ <h1 data-i="h1">¿Cuántos pesos recibes por un pago en dólares?</h1>
+ <p class="lead" data-i="lead">Escribe cuánto te pagan en USD y compara, con tarifas publicadas, cuántos pesos recibes por cada vía.</p>
+
+ <div class="grid main">
+  <div class="side">
+   <section class="card" id="pyCard" aria-labelledby="pyT">
+    <h2 id="pyT" data-i="payerT">¿Quién te paga?</h2>
+    <div class="chips" role="radiogroup" aria-labelledby="pyT">
+     <label class="chip"><input type="radio" name="payer" value="direct" checked><span data-i="py_direct">Cliente directo en EE.UU.</span></label>
+     <label class="chip"><input type="radio" name="payer" value="upwork"><span data-i="py_upwork">Upwork (info, beta)</span></label>
+     <label class="chip"><input type="radio" name="payer" value="fiverr"><span data-i="py_fiverr">Fiverr (info, beta)</span></label>
+     <label class="chip"><input type="radio" name="payer" value="deel"><span data-i="py_deel">Deel (info, beta)</span></label>
+     <label class="chip"><input type="radio" name="payer" value="other"><span data-i="py_other">Otro</span></label>
+    </div>
+    <div id="payerNote" class="pnote" hidden></div>
+   </section>
+
+   <section class="card" id="inCard" aria-labelledby="inT">
+    <label for="amt" id="inT" data-i="amtLabel">Monto que te pagan (US$)</label>
+    <div class="amount"><span>US$</span><input id="amt" type="number" inputmode="decimal" min="0" step="any" value="1000"></div>
+    <div id="rate" class="rate" aria-live="polite"></div>
+    <div class="override">
+     <label for="ovr" data-i="ovrLabel">Tipo de cambio manual (opcional, MX$ por US$1)</label>
+     <input id="ovr" type="number" inputmode="decimal" min="0" step="any" placeholder="18.50" aria-describedby="ovrWarn">
+     <p class="hint" data-i="ovrHint">Si lo llenas, se usa en lugar del tipo de cambio de referencia. Útil si las dos fuentes fallan.</p>
+     <p class="warn" id="ovrWarn" role="alert" hidden></p>
+    </div>
+   </section>
+
+   <section class="card" id="asCard" aria-labelledby="asT">
+    <h2 id="asT" data-i="assumeT">Ajusta los costos estimados</h2>
+    <div class="ctl first">
+     <label class="tog"><input id="ppAbroad" type="checkbox" checked><span data-i="ppAbroad">PayPal: quien paga está fuera de México (+0.50%)</span></label>
+    </div>
+    <div class="ctl">
+     <div class="row"><span class="name" id="poN"><span data-i="poName">Payoneer: conversión a pesos</span><span class="tag est" data-i="tEst">Estimación</span></span><span class="val" id="poV"></span></div>
+     <input id="poConv" type="range" min="0.5" max="4" step="0.1" value="2.6" aria-labelledby="poN poV">
+     <p class="hint" data-i="poHint">Payoneer publica 1.2% a 4% para transferencias al banco de un destinatario; no confirma que sea lo mismo al retirar a tu propio banco (es una interpretación), por eso el rango empieza en 0.5%. El monto exacto lo ves en tu cuenta antes de confirmar.</p>
+    </div>
+    <div class="ctl">
+     <label for="arqMode" data-i="arqModeL">ARQ: tipo de cuenta</label>
+     <select id="arqMode">
+      <option value="personal" data-i="arqM1">Personal (3 USDs por pago)</option>
+      <option value="bizFree" data-i="arqM2">Business, primeros 12 meses (gratis)</option>
+      <option value="bizAch" data-i="arqM3">Business, después de 12 meses, ACH (3 USDs)</option>
+      <option value="bizWire" data-i="arqM4">Business, después de 12 meses, wire (10 USDs)</option>
+     </select>
+    </div>
+    <div class="ctl">
+     <div class="row"><span class="name" id="arqN"><span data-i="arqName">ARQ: margen de cambio</span><span class="tag est" data-i="tEst">Estimación</span></span><span class="val" id="arqV"></span></div>
+     <input id="arqSp" type="range" min="0" max="1.5" step="0.1" value="0.5" aria-labelledby="arqN arqV">
+     <p class="hint" data-i="arqHint">ARQ dice que su tipo de cambio ya incluye todas sus comisiones y no publica el margen. Ajusta este estimado.</p>
+    </div>
+    <div class="ctl">
+     <div class="row"><span class="name" id="bbvaN"><span data-i="bbvaName">BBVA: margen de cambio</span><span class="tag est" data-i="tEst">Estimación</span></span><span class="val" id="bbvaV"></span></div>
+     <input id="bbvaSp" type="range" min="0" max="4" step="0.1" value="1.5" aria-labelledby="bbvaN bbvaV">
+     <p class="hint" data-i="bbvaHint">El banco aplica su propio tipo de cambio; este margen es un estimado.</p>
+    </div>
+    <div class="ctl" id="wiseCtl1">
+     <label for="wiseFund" data-i="wiseFundL">Wise: cómo paga quien te envía (costo por US$1,000; verificado 3 nov 2026, puede cambiar)</label>
+     <select id="wiseFund">
+      <option value="5.71" data-i="wf1">Saldo en Wise (US$5.71)</option>
+      <option value="7.67" data-i="wf2" selected>Débito directo (US$7.67)</option>
+      <option value="12.07" data-i="wf3">Transferencia bancaria (US$12.07)</option>
+      <option value="18.20" data-i="wf4">Tarjeta de débito (US$18.20)</option>
+      <option value="66.99" data-i="wf5">Tarjeta de crédito (US$66.99)</option>
+     </select>
+    </div>
+    <div class="ctl" id="wiseCtl2">
+     <label class="tog"><input id="wiseAbsorb" type="checkbox"><span data-i="wiseAbsorb">Wise: quien paga cubre la comisión por separado (recibes el monto completo)</span></label>
+    </div>
+   </section>
+  </div>
+
+  <section id="resSec" aria-labelledby="resT">
+   <h2 id="resT" data-i="resT">Comparación estimada: de mayor a menor resultado estimado</h2>
+   <div class="card year" id="yearCard">
+    <label for="nyr" data-i="yrLabel">¿Cuántos pagos así recibes al año?</label>
+    <input id="nyr" type="number" inputmode="numeric" min="1" max="1000" step="1" value="12" aria-describedby="nyrWarn">
+    <p class="warn" id="nyrWarn" role="alert" hidden></p>
+    <div id="yearHead" class="yhead" aria-live="polite"></div>
+    <div class="yact"><button type="button" id="shareBtn" class="btn" data-i="share" hidden>Compartir</button><span id="shareMsg" class="hint" role="status"></span></div>
+   </div>
+   <div id="results" class="results"></div>
+   <div class="rule" data-i="ruleT">Esta página no tiene enlaces de afiliado. Si algún día los tiene, no cambiarán el orden. El orden es matemática sobre las tarifas publicadas y estimaciones ajustables.</div>
+   <p class="hint" style="margin-top:12px" data-i="g66">Global66 no está incluida: su cuenta en USD (ACH/Wire) aparece en su centro de ayuda solo para Chile, Colombia, Ecuador, Argentina y Perú, no para México. Dónde vive tu dinero en Global66: no lo verificamos para México.</p>
+  </section>
+ </div>
+
+ <div style="margin-top:16px">
+  <section class="card">
+   <h2 data-i="nlT">Avisos de cambios en comisiones</h2>
+   <p style="margin:0 0 10px" data-i="nlP">Un correo corto cuando cambie alguna comisión o regla de estas vías.</p>
+   <span class="pill" data-i="nlSoon">Próximamente</span>
+  </section>
+ </div>
+
+ <section class="disc" style="margin-top:16px" role="note">
+  <b data-i="discB">Aviso:</b> <span data-i="discT">Esto es una simulación con tarifas publicadas y supuestos tuyos, no una cotización garantizada. Las tarifas y márgenes reales pueden diferir; verifica siempre en el sitio oficial antes de elegir. No es asesoría financiera ni recomendación.</span>
+ </section>
+
+ <footer>
+  <div data-i="f1">Sitio independiente. No tiene afiliación con PayPal, Payoneer, ARQ, BBVA, Wise, Upwork, Fiverr ni Deel; sus marcas pertenecen a sus dueños.</div>
+  <div data-i="f2">No somos entidad financiera ni movemos dinero. Solo comparamos.</div>
+  <div data-i="f3">No incluye impuestos sobre tus ingresos (ISR). El IVA de las comisiones puede ser acreditable si facturas; consulta a tu contador.</div>
+  <div data-i="f4">Los resultados son una simulación, no una cotización garantizada.</div>
+  <div data-i="f6">Sin cookies. El tipo de cambio se consulta en frankfurter.dev y, si falla, open.er-api.com.</div>
+  <div><span data-i="f5">Hecho por un desarrollador independiente</span> · <a id="reportLink" href="https://github.com/cuantomellega/cuantomellega.github.io/issues" target="_blank" rel="noopener" data-i="reportL">Reportar un error o una tarifa</a> <span class="rp" data-i="reportP">(los reportes en GitHub son públicos: no incluyas datos personales)</span></div>
+ </footer>
+
+ <details class="chg">
+  <summary data-i="logT">Historial de cambios</summary>
+  <ul class="log">
+   <li data-i="log7">v3.4, 3 nov 2026: Wise sale del ranking y va aparte («Si tu cliente paga con Wise»); textos en el HTML para buscadores y sin JavaScript; nota de reservas de USDs según ARQ; rango de Payoneer desde 0.5%; línea de privacidad; vistas de Upwork, Fiverr y Deel simplificadas.</li>
+   <li data-i="log6">v3.3, 3 nov 2026: el costo al año ya no compara contra Wise (solo aplica si tu cliente lo usa); nota de Wise para residentes en México corregida; «dónde vive tu dinero» en cada vía; Wise marcado como no disponible con Upwork; etiqueta «pierdes más de 20%»; aviso de que no es asesoría financiera.</li>
+   <li data-i="log5">v3.2, 3 nov 2026: Upwork, Fiverr y Deel pasan a una vista informativa (beta) sin ranking ni cifras en pesos; «Otro» ya no calcula costo al año; ARQ corregido a USDs; el tipo de cambio de cada resultado dice qué fuente se usó; todos los totales marcados como estimados; empate técnico señalado; canal para reportar errores.</li>
+   <li data-i="log4">v3.1, 3 nov 2026: tabla de Wise actualizada (verificada 3 nov 2026, puede cambiar); titular anual más cauto; PayPal marcado como estimación.</li>
+   <li data-i="log3">v3, 3 nov 2026: primero eliges quién te paga (cliente directo, Upwork, Fiverr, Deel u otro) y las vías se filtran o se marcan; costo al año con botón de compartir; tipo de cambio de referencia (BCE, diario) con el mismo nombre en toda la página.</li>
+   <li data-i="log2">v2, 28 oct 2026: ARQ personal y Business, Wise según forma de pago, etiquetas por línea, topes en cero y validaciones.</li>
+   <li data-i="log1">v1, 28 oct 2026: PayPal MX, Payoneer, ARQ, BBVA México y Wise; tipo de cambio de referencia (BCE, diario) con respaldo y campo manual.</li>
+  </ul>
+ </details>
+</div>
+
+<script>
+/*CORE-START*/
+const RULES = {
+  paypal:   { pct: 0.0395, fixedUsd: 0.30, intl: 0.005, conv: 0.035, iva: 0.16 },
+  payoneer: { recvPct: 0.01, recvMinUsd: 1, convMin: 1.2, convMax: 4 },
+  arq:      { personal: 3, bizFree: 0, bizAch: 3, bizWire: 10 },
+  bbva:     { feeUsd: 30, iva: 0.16 },
+  wise:     { defaultFeePer1000: 7.67, nearMin: 500, nearMax: 2000 }
+};
+// Payer-first filter. ok = the payer's official help lists this route for Mexico (or it is a direct payment);
+// verify = the payer lists it but does not confirm Mexico / our model does not match: shown, marked "verifica con tu plataforma";
+// no = the payer's official list of withdrawal methods does not include it.
+const PAYERS = ['direct', 'upwork', 'fiverr', 'deel', 'other'];
+const ALL_OK = { paypal: 'ok', payoneer: 'ok', arq: 'ok', bbva: 'ok', wise: 'ok' };
+const PAYER_STATUS = {
+  direct: ALL_OK,
+  // 'Otro': we do not know what the payer accepts, so every route is unconfirmed (numbers shown, no yearly headline).
+  other: { paypal: 'verify', payoneer: 'verify', arq: 'verify', bbva: 'verify', wise: 'verify' },
+  upwork: { paypal: 'verify', payoneer: 'ok', arq: 'verify', bbva: 'ok', wise: 'no' },
+  fiverr: { paypal: 'verify', payoneer: 'verify', arq: 'no', bbva: 'no', wise: 'no' },
+  deel:   { paypal: 'verify', payoneer: 'verify', arq: 'verify', bbva: 'verify', wise: 'verify' }
+};
+// Platform withdrawal fees are NOT modeled in the UI since v3.2 (platform modes are info-only). The hook stays in calcRails but the UI never passes it.
+// Upwork: US$50 per U.S.-dollar wire (support.upwork.com, checked 2026-11-03).
+const PLATFORM_FEES = { upwork: { bbva: 50 } };
+const YEAR_MAX = 1000;
+const TIE_PCT = 0.01;
+const isPlat = p => p === 'upwork' || p === 'fiverr' || p === 'deel';
+function statusOf(payer, id) { return (PAYER_STATUS[payer] || PAYER_STATUS.direct)[id] || 'verify'; }
+// Top two within 1% of the top result (rows already computed, na excluded): the order depends on assumptions.
+// v3.4: Wise is never ranked (shown as a separate card), so it never counts toward a tie.
+const UNRANKED = ['wise'];
+const ranked = rows => rows.filter(r => UNRANKED.indexOf(r.id) < 0);
+function tied(rows) {
+  const c = ranked(rows).filter(r => !r.na).sort((a, b) => b.pesos - a.pesos);
+  return c.length >= 2 && c[0].pesos > 0 && (c[0].pesos - c[1].pesos) / c[0].pesos < TIE_PCT;
+}
+// Worst vs best among routes that apply: computable (not "na") and status ok. Only for a confirmed direct payment (v3.2).
+// v3.3: Wise is excluded (it only applies if the client pays via Wise), so the comparison is among routes you can open yourself.
+const YEAR_EXCLUDE = UNRANKED;
+function yearly(rows, payer, n) {
+  if (payer !== 'direct' || !(n >= 1) || !Number.isInteger(n)) return null;
+  const c = rows.filter(r => !r.na && statusOf(payer, r.id) === 'ok' && YEAR_EXCLUDE.indexOf(r.id) < 0).sort((a, b) => b.pesos - a.pesos);
+  if (c.length < 2) return null;
+  const best = c[0], worst = c[c.length - 1], per = best.pesos - worst.pesos;
+  if (!(per >= 0.005)) return null;
+  return { best: best.id, worst: worst.id, perPayment: per, perYear: per * n, n };
+}
+function calcRails(A, rate, o) {
+  o = Object.assign({ ppAbroad: true, platFee: null, poConv: 0.026, arqMode: 'personal', arqSpread: 0.005, bbvaSpread: 0.015, wiseAbsorb: false, wiseFeePer1000: RULES.wise.defaultFeePer1000 }, o || {});
+  const ref = A * rate, out = [];
+  const add = (id, items, pesos, extra) => {
+    if (!(pesos > 0)) { out.push({ id, items: [], pesos: 0, loss: ref, lossPct: 100, na: true, extra: null }); return; }
+    const loss = ref - pesos;
+    out.push({ id, items, pesos, loss, lossPct: ref > 0 ? loss / ref * 100 : 0, na: false, extra: extra || null });
+  };
+  { // PayPal MX (commercial account)
+    const R = RULES.paypal;
+    const pct = A * R.pct, intl = o.ppAbroad ? A * R.intl : 0, fix = R.fixedUsd;
+    const iva = (pct + intl + fix) * R.iva;
+    const net = Math.max(0, A - pct - intl - fix - iva);
+    const conv = net * rate * R.conv, convIva = conv * R.iva;
+    add('paypal', [
+      { k: 'ppPct', mxn: pct * rate, t: 'pub' }, { k: 'ppIntl', mxn: intl * rate, t: 'pub' }, { k: 'ppFixed', mxn: fix * rate, t: 'pub' },
+      { k: 'ppIva', mxn: iva * rate, t: 'sup' }, { k: 'ppConv', mxn: conv, t: 'est' }, { k: 'ppConvIva', mxn: convIva, t: 'sup' }
+    ].filter(x => x.mxn > 0), net * rate - conv - convIva);
+  }
+  { // Payoneer
+    const R = RULES.payoneer;
+    const fee = Math.max(A * R.recvPct, R.recvMinUsd);
+    const net = Math.max(0, A - fee);
+    const conv = net * rate * o.poConv;
+    add('payoneer', [{ k: 'poRecv', mxn: fee * rate, t: 'pub' }, { k: 'poConv', mxn: conv, t: 'est' }], net * rate - conv);
+  }
+  { // ARQ (personal or Business)
+    const feeUsd = RULES.arq[o.arqMode] != null ? RULES.arq[o.arqMode] : RULES.arq.personal;
+    const net = Math.max(0, A - feeUsd);
+    const sp = net * rate * o.arqSpread;
+    add('arq', [{ k: 'arqFee' + feeUsd, mxn: feeUsd * rate, t: 'pub' }, { k: 'arqSpread', mxn: sp, t: 'est' }].filter(x => x.mxn > 0), net * rate - sp);
+  }
+  { // BBVA Mexico: incoming international transfer (same US$30 + IVA in the general Tarifario and the Empresas page)
+    const fee = RULES.bbva.feeUsd, iva = fee * RULES.bbva.iva;
+    const pre = Math.min(A, (o.platFee && o.platFee.bbva) || 0);
+    const net = Math.max(0, A - pre - fee - iva);
+    const sp = net * rate * o.bbvaSpread;
+    add('bbva', [{ k: 'platWire', mxn: pre * rate, t: 'pub' }, { k: 'bbvaFee', mxn: fee * rate, t: 'pub' }, { k: 'bbvaIva', mxn: iva * rate, t: 'sup' }, { k: 'bbvaSpread', mxn: sp, t: 'est' }].filter(x => x.mxn > 0), net * rate - sp);
+  }
+  { // Wise (payer uses Wise; mid-market rate; fee scaled from Wise's US$1,000 table)
+    const fee = A * o.wiseFeePer1000 / 1000;
+    if (o.wiseAbsorb) add('wise', [], ref, { usd: fee, mxn: fee * rate });
+    else add('wise', [{ k: 'wiseFee', mxn: fee * rate, t: 'est' }], Math.max(0, (A - fee) * rate));
+  }
+  return out.sort((a, b) => (a.na - b.na) || (b.pesos - a.pesos));
+}
+/*CORE-END*/
+
+const ECB = 'https://api.frankfurter.dev/v2/providers/ecb/rate/usd/mxn';
+const ER = 'https://open.er-api.com/v6/latest/USD';
+const VERIFIED = '2026-10-28';
+const SITE_URL = 'https://cuantomellega.github.io/';
+const FX_MIN = 10, FX_MAX = 30;
+const BANXICO = 'https://www.banxico.org.mx/';
+const ARQ_TR = 'https://www.arqfinance.com/es-MX/transparency';
+
+const RAILS = {
+  paypal: { name: 'PayPal MX', sub: { es: 'Pago comercial recibido en tu cuenta PayPal', en: 'Commercial payment received in your PayPal account' },
+    links: [['https://www.paypal.com/mx/webapps/mpp/merchant-fees', 'paypal.com/mx']] },
+  payoneer: { name: 'Payoneer', sub: { es: 'Cuenta de recepción en USD, retiro a banco en pesos', en: 'USD receiving account, withdrawal to a bank in pesos' },
+    links: [['https://www.payoneer.com/about/pricing/', 'payoneer.com/about/pricing']] },
+  arq: { ver: '2026-11-03', name: 'ARQ (antes DolarApp)', sub: { es: 'Datos de cuenta en EE.UU. (ACH/Wire), pesos por SPEI', en: 'US account details (ACH/Wire), pesos via SPEI' },
+    links: [['https://www.arqfinance.com/es-MX/help/articles/arq-costs-and-fees-mexico', 'ARQ costos personal'], ['https://www.arqfinance.com/es-MX/help/articles/arq-business-costs-and-fees', 'ARQ Business'], ['https://www.arqfinance.com/es-MX/legal', 'ARQ legal'], [ARQ_TR, 'ARQ transparencia USDs']] },
+  bbva: { name: 'BBVA México', sub: { es: 'Transferencia internacional recibida (SWIFT) en cuenta en pesos', en: 'International transfer received (SWIFT) into a peso account' },
+    links: [['https://www.bbva.mx/content/dam/public-web/mexico/documents/tarifario-general/Tarifario.pdf', 'BBVA Tarifario (PDF)'], ['https://www.bbva.mx/empresas/productos/comercio-internacional/servicios-al-comercio-exterior/transferencias-internacionales.html', 'BBVA Empresas']] },
+  wise: { ver: '2026-11-03', chg: true, name: 'Wise', label: { es: 'Si tu cliente paga con Wise', en: 'If your client pays with Wise' }, sub: { es: 'Si quien te paga usa Wise (pago a tu CLABE)', en: 'If the person paying you uses Wise (paid into your CLABE)' },
+    links: [['https://wise.com/us/send-money/send-money-to-mexico', 'wise.com envío a México'], ['https://wise.com/us/pricing/send-money', 'wise.com precios'], ['https://wise.com/mx/account/', 'wise.com/mx/account']] }
+};
+
+const T = {
+ es: {
+  h1: '¿Cuántos pesos recibes por un pago en dólares?',
+  lead: 'Escribe cuánto te pagan en USD y compara, con tarifas publicadas, cuántos pesos recibes por cada vía.',
+  amtLabel: 'Monto que te pagan (US$)',
+  ovrLabel: 'Tipo de cambio manual (opcional, MX$ por US$1)', ovrHint: 'Si lo llenas, se usa en lugar del tipo de cambio de referencia. Útil si las dos fuentes fallan.',
+  ovrRange: 'Ojo: un tipo de cambio fuera de 10 a 30 es poco común. Revisa que no sea un error.', ovrBad: 'Escribe un número mayor que cero. Se ignora mientras tanto.',
+  assumeT: 'Ajusta los costos estimados',
+  ppAbroad: 'PayPal: quien paga está fuera de México (+0.50%)',
+  poName: 'Payoneer: conversión a pesos', poHint: 'Payoneer publica 1.2% a 4% para transferencias al banco de un destinatario; no confirma que sea lo mismo al retirar a tu propio banco (es una interpretación), por eso el rango empieza en 0.5%. El monto exacto lo ves en tu cuenta antes de confirmar.',
+  arqModeL: 'ARQ: tipo de cuenta',
+  arqM1: 'Personal (3 USDs por pago)', arqM2: 'Business, primeros 12 meses (gratis)', arqM3: 'Business, después de 12 meses, ACH (3 USDs)', arqM4: 'Business, después de 12 meses, wire (10 USDs)',
+  arqName: 'ARQ: margen de cambio', arqHint: 'ARQ dice que su tipo de cambio ya incluye todas sus comisiones y no publica el margen. Ajusta este estimado.',
+  bbvaName: 'BBVA: margen de cambio', bbvaHint: 'El banco aplica su propio tipo de cambio; este margen es un estimado.',
+  wiseFundL: 'Wise: cómo paga quien te envía (costo por US$1,000; verificado 3 nov 2026, puede cambiar)',
+  wf1: 'Saldo en Wise (US$5.71)', wf2: 'Débito directo (US$7.67)', wf3: 'Transferencia bancaria (US$12.07)', wf4: 'Tarjeta de débito (US$18.20)', wf5: 'Tarjeta de crédito (US$66.99)',
+  wiseAbsorb: 'Wise: quien paga cubre la comisión por separado (recibes el monto completo)',
+  tEst: 'Estimación', tPub: 'Tarifa publicada', tSup: 'Supuesto',
+  resT: 'Comparación estimada: de mayor a menor resultado estimado',
+  ruleT: 'Esta página no tiene enlaces de afiliado. Si algún día los tiene, no cambiarán el orden. El orden es matemática sobre las tarifas publicadas y estimaciones ajustables.',
+  g66: 'Global66 no está incluida: su cuenta en USD (ACH/Wire) aparece en su centro de ayuda solo para Chile, Colombia, Ecuador, Argentina y Perú, no para México. Dónde vive tu dinero en Global66: no lo verificamos para México.',
+  nlT: 'Avisos de cambios en comisiones', nlP: 'Un correo corto cuando cambie alguna comisión o regla de estas vías.', nlSoon: 'Próximamente',
+  log4: 'v3.1, 3 nov 2026: tabla de Wise actualizada (verificada 3 nov 2026, puede cambiar); titular anual más cauto; PayPal marcado como estimación.',
+  log3: 'v3, 3 nov 2026: primero eliges quién te paga (cliente directo, Upwork, Fiverr, Deel u otro) y las vías se filtran o se marcan; costo al año con botón de compartir; tipo de cambio de referencia (BCE, diario) con el mismo nombre en toda la página.',
+  log1: 'v1, 28 oct 2026: PayPal MX, Payoneer, ARQ, BBVA México y Wise; tipo de cambio de referencia (BCE, diario) con respaldo y campo manual.',
+  log2: 'v2, 28 oct 2026: ARQ personal y Business, Wise según forma de pago, etiquetas por línea, topes en cero y validaciones.',
+  discB: 'Aviso:', discT: 'Esto es una simulación con tarifas publicadas y supuestos tuyos, no una cotización garantizada. Las tarifas y márgenes reales pueden diferir; verifica siempre en el sitio oficial antes de elegir. No es asesoría financiera ni recomendación.',
+  f1: 'Sitio independiente. No tiene afiliación con PayPal, Payoneer, ARQ, BBVA, Wise, Upwork, Fiverr ni Deel; sus marcas pertenecen a sus dueños.',
+  f2: 'No somos entidad financiera ni movemos dinero. Solo comparamos.',
+  f3: 'No incluye impuestos sobre tus ingresos (ISR). El IVA de las comisiones puede ser acreditable si facturas; consulta a tu contador.',
+  f4: 'Los resultados son una simulación, no una cotización garantizada.',
+  f5: 'Hecho por un desarrollador independiente',
+  f6: 'Sin cookies. El tipo de cambio se consulta en frankfurter.dev y, si falla, open.er-api.com.',
+  title: '¿CuántoMeLlega? | Cuántos pesos recibes de un pago en dólares',
+  wiseCardT: 'Si tu cliente paga con Wise',
+  wiseCardN: 'Fuera del ranking: solo aplica si quien te paga ya usa Wise; no es una vía que puedas abrir tú desde México.',
+  arqRes: 'Según ARQ, USDs lo emite Bridge (una empresa de Stripe) y está respaldado 1:1 por efectivo y bonos del Tesoro de EE.UU. de corto plazo, con reservas publicadas (consultado 3 nov 2026):',
+  platNote: { upwork: 'Upwork publica sus comisiones de retiro (por ejemplo, banco local US$0.99 y wire en USD US$50); tu banco o proveedor puede cobrar aparte.', fiverr: 'Fiverr publica comisiones de US$0 a US$3 según el método (PayPal o Payoneer); PayPal o Payoneer pueden cobrar aparte su conversión.', deel: 'Deel publica una comisión por método (por ejemplo, banco local US$0, PayPal 2.5%, SWIFT US$5 a US$10) y avisa que no todos están en todos los países.' },
+  platLinkT: 'Comisiones de retiro oficiales de {P}',
+  log7: 'v3.4, 3 nov 2026: Wise sale del ranking y va aparte («Si tu cliente paga con Wise»); textos en el HTML para buscadores y sin JavaScript; nota de reservas de USDs según ARQ; rango de Payoneer desde 0.5%; línea de privacidad; vistas de Upwork, Fiverr y Deel simplificadas.',
+  rateLbl: 'tipo de cambio de referencia', rateEcb: '(BCE, diario)', rateEr: '(open.er-api.com, diario)', rateOf: 'al', rateManual: 'tipo de cambio manual',
+  rateBanxico: 'Referencia en México: el FIX de Banxico', rateBanxicoNote: 'puede diferir un poco.',
+  rateFail: 'No se pudo cargar el tipo de cambio de referencia (ni la fuente principal ni el respaldo). Escribe uno en el campo manual.',
+  loading: 'Cargando tipo de cambio de referencia (BCE, diario)…', need: 'Escribe un monto mayor que cero y un tipo de cambio para ver resultados.',
+  recv: 'te llegan (estimado)', loss: 'Diferencia frente al {R}', none: 'Sin diferencia frente al {R}',
+  naT: 'No aplica', naU: 'las comisiones superan el monto', naBad: 'pierdes más de 20%', bad: 'pierdes más de 20%',
+  source: 'Fuente', pubOn: 'Tarifa publicada, consultada el', pubChg: 'Tarifa publicada, verificado {D}, puede cambiar',
+  ppPct: 'Comisión 3.95%', ppIntl: 'Comisión internacional 0.50%', ppFixed: 'Comisión fija US$0.30', ppIva: 'IVA 16% sobre comisiones', ppConv: 'Conversión a pesos (3.50% sobre el tipo base de PayPal)', ppConvIva: 'IVA 16% sobre conversión',
+  poRecv: 'Recibir en cuenta USD (1%, mín. US$1)', poConv: 'Conversión y retiro a pesos',
+  arqFee3: 'Comisión por pago en EE.UU. (3 USDs)', arqFee10: 'Comisión por wire (10 USDs)', arqSpread: 'Margen de cambio',
+  bbvaFee: 'Comisión por recibir (US$30)', bbvaIva: 'IVA 16% sobre comisión', bbvaSpread: 'Margen del banco',
+  wiseFee: 'Comisión de Wise que paga quien envía',
+  wiseExtra: 'Costo extra para quien te paga (no sale de tus pesos):',
+  topLbl: 'mayor resultado estimado con estos supuestos',
+  tieN: 'Los dos primeros están prácticamente empatados (menos de 1% de diferencia); depende de los supuestos.',
+  moreT: 'Desglose, notas y fuentes',
+  rn_ecb: 'tipo de cambio de referencia (BCE, diario)',
+  rn_er: 'tipo de cambio de referencia (open.er-api.com, diario)',
+  rn_manual: 'tipo de cambio manual',
+  yrFrac: 'Escribe un número entero de pagos, sin decimales.',
+  yrNone: 'Con este monto no hay 2 o más vías comparables para calcular el costo al año.',
+  verifyOther: 'confirma con quien te paga',
+  infoT: 'Información de {P} (beta): sin ranking ni cifras en pesos',
+  infoLead: 'Esto es solo información: qué vías lista {P} para retirar y lo que publica. Para este pagador no mostramos ranking, ni montos en pesos, ni costo al año.',
+  goDirect: 'Calcular un pago directo',
+  notListedTag: 'no aparece en su lista',
+  reportL: 'Reportar un error o una tarifa',
+  reportP: '(los reportes en GitHub son públicos: no incluyas datos personales)',
+  logT: 'Historial de cambios',
+  log6: 'v3.3, 3 nov 2026: el costo al año ya no compara contra Wise (solo aplica si tu cliente lo usa); nota de Wise para residentes en México corregida; «dónde vive tu dinero» en cada vía; Wise marcado como no disponible con Upwork; etiqueta «pierdes más de 20%»; aviso de que no es asesoría financiera.',
+  log5: 'v3.2, 3 nov 2026: Upwork, Fiverr y Deel pasan a una vista informativa (beta) sin ranking ni cifras en pesos; «Otro» ya no calcula costo al año; ARQ corregido a USDs; el tipo de cambio de cada resultado dice qué fuente se usó; todos los totales marcados como estimados; empate técnico señalado; canal para reportar errores.',
+  payerT: '¿Quién te paga?', py_direct: 'Cliente directo en EE.UU.', py_upwork: 'Upwork (info, beta)', py_fiverr: 'Fiverr (info, beta)', py_deel: 'Deel (info, beta)', py_other: 'Otro',
+  pnPlat: 'Beta: por ahora solo calculamos pagos directos de un cliente; las comisiones de retiro de la plataforma no están modeladas.',
+  pnOther: 'Las cifras suponen un pago directo, pero no sabemos qué vías acepta quien te paga: trátalas como no confirmadas. Por eso no calculamos el costo al año con «Otro».',
+  verifyTag: 'verifica con tu plataforma', listedTag: 'listado por la plataforma',
+  costT: 'Lo que publica {P} (referencia; no entra en ninguna cifra)', costDate: 'Tarifa publicada, consultada el',
+  noT: 'No disponibles para este pagador', noLead: 'La ayuda oficial de {P} no lista estas vías como método de retiro:',
+  platWire: 'Retiro por wire en USD de Upwork (US$50)',
+  yrLabel: '¿Cuántos pagos así recibes al año?',
+  yrBad: 'Escribe un número entero de 1 a 1,000.', yrMax: 'El máximo es 1,000 pagos al año; se usa 1,000.',
+  yrHead: 'Con {W} podrías recibir ~{X} MXN menos al año vs. la opción con mayor resultado estimado.',
+  yrSub: '{N} pagos de {A}: mayor resultado estimado con {B}, menor con {W}. Diferencia estimada por pago: ~{D} MXN. Tipo de cambio usado: {R}, MX${V}. No incluye cuotas anuales de cuenta (por ejemplo, Payoneer cobra US$29.95 al año si recibes menos de US$6,000 en 12 meses). Es una simulación, no una promesa: el tipo de cambio y las tarifas cambian.',
+  yrNeed: 'Con «Otro» no calculamos el costo al año: no sabemos qué vías acepta quien te paga. Si es un cliente directo en EE.UU., elige «Cliente directo en EE.UU.».',
+  share: 'Compartir', shareCopied: 'Copiado. Pégalo donde quieras.', shareFail: 'No se pudo copiar. Selecciona y copia el texto de arriba.',
+  shareTitle: '¿CuántoMeLlega?', shareCta: 'Calcula el tuyo:', shareVs: 'frente a', shareEst: 'estimación',
+  wiseNear: 'Wise solo aproximado cerca de US$1,000', ppEstTag: 'tipo de cambio estimado',
+  ppEstNote: 'PayPal aplica su 3.5% sobre su propio tipo de cambio base, no sobre el tipo de cambio de referencia que se usa aquí. Por eso este monto en pesos es una estimación: el real puede ser distinto.',
+  wiseFar: 'Con este monto la comisión de Wise es solo una aproximación: Wise publica su tabla para US$1,000 y aquí se escala proporcionalmente.',
+  sitsT: 'Dónde vive tu dinero:',
+  sits: { paypal: 'saldo en tu cuenta PayPal; el contrato es con Operadora PayPal de México, un proveedor de servicios de pago, no un banco. No es un depósito bancario protegido por el IPAB.',
+    payoneer: 'saldo en Payoneer. Sus términos dicen que no es una cuenta bancaria, que los fondos no son depósitos y que no aplica un seguro gubernamental de depósitos; Payoneer dice que separa los fondos de clientes.',
+    arq: 'saldo en ARQ como activo virtual (USDs) hasta que lo conviertes a pesos.',
+    bbva: 'en tu cuenta en pesos de BBVA México, un banco: los depósitos bancarios están protegidos por el IPAB hasta 400,000 UDIs por persona y banco.',
+    wise: 'no se queda en Wise: llega en pesos directo a tu cuenta bancaria (CLABE). Queda protegido según tu banco.' },
+  arqLegal: 'USDs es un activo virtual: no es moneda de curso legal en México y no es un depósito bancario protegido por el IPAB. ARQ convierte los pagos entrantes a USDs (o EURc) y el servicio lo presta la entidad que ARQ indica en su aviso legal (DA Global Limited y/o Pier 5 S.A. de C.V.).',
+  nPaypal: ['Página de comisiones para comercios (cuenta Empresa); una cuenta personal puede tener otras tarifas.', 'La página dice que las comisiones están "sujetas a IVA"; el 16% es la tasa general en México (supuesto). Retiro estándar a banco sin comisión.'],
+  nPayoneer: ['Cuota anual de US$29.95 si recibes menos de US$6,000 en 12 meses consecutivos (no se resta aquí).', 'Las tarifas varían según territorio, método de pago y la tabla dentro de tu cuenta. Con tarjeta o PayPal al recibir: hasta 3.99% + US$0.49; aquí se asume depósito por ACH o banco.', 'Retirar USD a una cuenta en USD cuesta US$1.50 fijos; aquí se asume conversión a pesos; Payoneer publica 1.2% a 4% para transferencias al banco de un destinatario. Dónde cae tu caso es una interpretación.'],
+  nArq: ['Personal: 3 USDs por pago en EE.UU. (plan Standard). Business: ACH gratis 12 meses y luego 3 USDs; wire gratis 12 meses y luego 10 USDs. ARQ llama USDs al activo digital (no «USDc»), tanto en personal como en Business.', 'ARQ no publica un margen de conversión aparte; el margen es una estimación. Consultado en las páginas de ayuda y legal de ARQ México el 3 nov 2026 (ARQ indica actualización del 29 oct 2026).'],
+  nBbva: ['Comisión de US$30 + IVA por recibir una transferencia internacional: aparece en el Tarifario general de BBVA (oct 2026) y en su página de Empresas. No encontramos una tarifa menor para cuentas personales.', 'Los bancos intermediarios pueden descontar entre US$1 y US$70 adicionales (no incluido). BBVA fija su tipo de cambio: el margen es una estimación. Su producto de remesas es otro servicio, no una transferencia SWIFT.'],
+  nWise: ['Residentes en México pueden abrir cuenta Wise para enviar pesos al extranjero; no encontramos que ofrezca saldo ni datos de cuenta en USD. Aquí solo aplica si quien te paga usa Wise y deposita en tu CLABE.', 'Wise publica el costo por forma de pago para enviar US$1,000 de EE.UU. a México (verificado 3 nov 2026, puede cambiar): saldo US$5.71, débito directo US$7.67, transferencia bancaria US$12.07, tarjeta de débito US$18.20, tarjeta de crédito US$66.99. Las tarjetas varían según el tipo (por ejemplo, de US$41.11 a US$70.10 en otras variantes). Aquí se escala a otros montos (estimación). Usa tipo medio, que puede diferir del tipo de cambio de referencia que uses aquí.']
+ },
+ en: {
+  h1: 'How many pesos do you get from a dollar payment?',
+  lead: 'Enter how much you are paid in USD and compare, using published fees, how many pesos you get through each route.',
+  amtLabel: 'Amount you are paid (US$)',
+  ovrLabel: 'Manual exchange rate (optional, MX$ per US$1)', ovrHint: 'If filled in, it replaces the reference rate. Useful if both sources fail.',
+  ovrRange: 'Heads up: a rate outside 10 to 30 is unusual. Check it is not a typo.', ovrBad: 'Enter a number above zero. It is ignored for now.',
+  assumeT: 'Adjust the estimated costs',
+  ppAbroad: 'PayPal: the payer is outside Mexico (+0.50%)',
+  poName: 'Payoneer: conversion to pesos', poHint: 'Payoneer publishes 1.2% to 4% for transfers to a recipient\'s bank; it does not confirm the same applies when withdrawing to your own bank (an interpretation), so the range starts at 0.5%. You see the exact amount in your account before confirming.',
+  arqModeL: 'ARQ: account type',
+  arqM1: 'Personal (3 USDs per payment)', arqM2: 'Business, first 12 months (free)', arqM3: 'Business, after 12 months, ACH (3 USDs)', arqM4: 'Business, after 12 months, wire (10 USDs)',
+  arqName: 'ARQ: FX margin', arqHint: 'ARQ says its exchange rate already includes all its fees and does not publish the margin. Adjust this estimate.',
+  bbvaName: 'BBVA: FX margin', bbvaHint: 'The bank applies its own exchange rate; this margin is an estimate.',
+  wiseFundL: 'Wise: how the sender pays (cost per US$1,000; verified Nov 3, 2026, may change)',
+  wf1: 'Wise balance (US$5.71 per US$1,000)', wf2: 'Direct debit (US$7.67 per US$1,000)', wf3: 'Bank transfer (US$12.07 per US$1,000)', wf4: 'Debit card (US$18.20 per US$1,000)', wf5: 'Credit card (US$66.99 per US$1,000)',
+  wiseAbsorb: 'Wise: the payer covers the fee separately (you receive the full amount)',
+  tEst: 'Estimate', tPub: 'Published fee', tSup: 'Assumption',
+  resT: 'Estimated comparison: from highest to lowest estimated result',
+  ruleT: 'This page has no affiliate links. If it ever does, they will not change the order. The order is math on published fees and adjustable estimates.',
+  g66: 'Global66 is not included: its USD account (ACH/Wire) appears in its help center only for Chile, Colombia, Ecuador, Argentina and Peru, not Mexico. Where your money sits with Global66: not verified for Mexico.',
+  nlT: 'Fee change alerts', nlP: 'A short email whenever a fee or rule changes on these routes.', nlSoon: 'Coming soon',
+  log4: 'v3.1, Nov 3, 2026: Wise table updated (verified Nov 3, 2026, may change); softer yearly headline; PayPal flagged as an estimate.',
+  log3: 'v3, Nov 3, 2026: you first pick who pays you (direct client, Upwork, Fiverr, Deel or other) and routes are filtered or flagged; yearly cost with a share button; one name for the reference rate (ECB, daily) across the page.',
+  log1: 'v1, Oct 28, 2026: PayPal MX, Payoneer, ARQ, BBVA México and Wise; reference rate (ECB, daily) with fallback and a manual field.',
+  log2: 'v2, Oct 28, 2026: ARQ personal and Business, Wise by payment method, per-line tags, zero floors and input checks.',
+  discB: 'Notice:', discT: 'This is a simulation using published fees and your assumptions, not a guaranteed quote. Real fees and margins may differ; always verify on the official site before choosing. Not financial advice or a recommendation.',
+  f1: 'Independent site. Not affiliated with PayPal, Payoneer, ARQ, BBVA, Wise, Upwork, Fiverr or Deel; their trademarks belong to their owners.',
+  f2: 'We are not a financial entity and we do not move money. We only compare.',
+  f3: 'Income taxes (ISR) are not included. VAT on fees may be creditable if you issue invoices; ask your accountant.',
+  f4: 'Results are a simulation, not a guaranteed quote.',
+  f5: 'Made by an independent developer',
+  f6: 'No cookies. The exchange rate comes from frankfurter.dev and, if that fails, open.er-api.com.',
+  title: '¿CuántoMeLlega? | How many pesos you get from a dollar payment',
+  wiseCardT: 'If your client pays with Wise',
+  wiseCardN: 'Outside the ranking: it only applies if the person paying you already uses Wise; it is not a route you can open yourself from Mexico.',
+  arqRes: 'According to ARQ, USDs is issued by Bridge (a Stripe company) and backed 1:1 by cash and short-term US Treasuries, with published reserves (checked Nov 3, 2026):',
+  platNote: { upwork: 'Upwork publishes its withdrawal fees (for example, local bank US$0.99 and USD wire US$50); your bank or provider may charge extra.', fiverr: 'Fiverr publishes fees of US$0 to US$3 depending on the method (PayPal or Payoneer); PayPal or Payoneer may charge their own conversion.', deel: 'Deel publishes a fee per method (for example, local bank US$0, PayPal 2.5%, SWIFT US$5 to US$10) and warns that not all are available in every country.' },
+  platLinkT: '{P} official withdrawal fees',
+  log7: 'v3.4, Nov 3, 2026: Wise leaves the ranking and gets its own card ("If your client pays with Wise"); text in the HTML for search engines and no-JS; USDs reserves note per ARQ; Payoneer range from 0.5%; privacy line; simpler Upwork, Fiverr and Deel views.',
+  rateLbl: 'reference rate', rateEcb: '(ECB, daily)', rateEr: '(open.er-api.com, daily)', rateOf: 'as of', rateManual: 'manual exchange rate',
+  rateBanxico: 'Mexican benchmark: the Banxico FIX', rateBanxicoNote: 'may differ slightly.',
+  rateFail: 'Could not load the reference rate (neither the main source nor the fallback). Type one in the manual field.',
+  loading: 'Loading reference rate (ECB, daily)…', need: 'Enter an amount above zero and an exchange rate to see results.',
+  recv: 'you receive (estimated)', loss: 'Difference vs. the {R}', none: 'No difference vs. the {R}',
+  naT: 'Not applicable', naU: 'fees exceed the amount', naBad: 'you lose over 20%', bad: 'you lose over 20%',
+  source: 'Source', pubOn: 'Published fee, checked on', pubChg: 'Published fee, verified {D}, may change',
+  ppPct: 'Fee 3.95%', ppIntl: 'International fee 0.50%', ppFixed: 'Fixed fee US$0.30', ppIva: '16% VAT on fees', ppConv: 'Conversion to pesos (3.50% over PayPal\'s base rate)', ppConvIva: '16% VAT on conversion',
+  poRecv: 'Receive into USD account (1%, min. US$1)', poConv: 'Conversion and withdrawal to pesos',
+  arqFee3: 'Fee per US payment (3 USDs)', arqFee10: 'Wire fee (10 USDs)', arqSpread: 'FX margin',
+  bbvaFee: 'Incoming transfer fee (US$30)', bbvaIva: '16% VAT on fee', bbvaSpread: 'Bank margin',
+  wiseFee: 'Wise fee paid by the sender',
+  wiseExtra: 'Extra cost for whoever pays you (not taken from your pesos):',
+  topLbl: 'highest estimated result under these assumptions',
+  tieN: 'The top two are practically tied (under 1% apart); it depends on the assumptions.',
+  moreT: 'Breakdown, notes and sources',
+  rn_ecb: 'reference rate (ECB, daily)',
+  rn_er: 'reference rate (open.er-api.com, daily)',
+  rn_manual: 'manual exchange rate',
+  yrFrac: 'Enter a whole number of payments, no decimals.',
+  yrNone: 'At this amount there are not 2 or more comparable routes to calculate the yearly cost.',
+  verifyOther: 'confirm with your payer',
+  infoT: '{P} information (beta): no ranking or peso figures',
+  infoLead: 'Information only: which routes {P} lists for withdrawals and what it publishes. For this payer we show no ranking, no peso amounts and no yearly cost.',
+  goDirect: 'Calculate a direct payment',
+  notListedTag: 'not in its list',
+  reportL: 'Report an error or a fee',
+  reportP: '(GitHub reports are public: do not include personal data)',
+  logT: 'Changelog',
+  log6: 'v3.3, Nov 3, 2026: the yearly cost no longer compares against Wise (it only applies if your client uses it); Wise note for Mexico residents corrected; "where your money sits" on every route; Wise marked unavailable with Upwork; "you lose over 20%" tag; not-financial-advice notice.',
+  log5: 'v3.2, Nov 3, 2026: Upwork, Fiverr and Deel become an info-only view (beta) with no ranking or peso figures; "Other" no longer calculates a yearly cost; ARQ corrected to USDs; each result names the exchange-rate source used; all totals marked as estimates; practical ties flagged; a channel to report errors.',
+  payerT: 'Who pays you?', py_direct: 'Direct client in the US', py_upwork: 'Upwork (info, beta)', py_fiverr: 'Fiverr (info, beta)', py_deel: 'Deel (info, beta)', py_other: 'Other',
+  pnPlat: 'Beta: for now we only calculate direct payments from a client; platform withdrawal fees are not modeled.',
+  pnOther: 'Figures assume a direct payment, but we do not know which routes whoever pays you accepts: treat them as unconfirmed. That is why the yearly cost is not calculated with "Other".',
+  verifyTag: 'check with your platform', listedTag: 'listed by the platform',
+  costT: 'What {P} publishes (reference; not part of any figure)', costDate: 'Published fee, checked on',
+  noT: 'Not available for this payer', noLead: '{P}\'s official help does not list these routes as a withdrawal method:',
+  platWire: 'Upwork USD wire withdrawal (US$50)',
+  yrLabel: 'How many payments like this do you receive per year?',
+  yrBad: 'Enter a whole number from 1 to 1,000.', yrMax: 'The maximum is 1,000 payments per year; 1,000 is used.',
+  yrHead: 'With {W} you could receive ~{X} MXN less per year vs. the highest estimated option.',
+  yrSub: '{N} payments of {A}: highest estimated result with {B}, lowest with {W}. Estimated difference per payment: ~{D} MXN. Rate used: {R}, MX${V}. Does not include annual account fees (for example, Payoneer charges US$29.95 a year if you receive less than US$6,000 in 12 months). This is a simulation, not a promise: exchange rates and fees change.',
+  yrNeed: 'With "Other" the yearly cost is not calculated: we do not know which routes whoever pays you accepts. If it is a direct client in the US, pick "Direct client in the US".',
+  share: 'Share', shareCopied: 'Copied. Paste it anywhere.', shareFail: 'Could not copy. Select and copy the text above.',
+  shareTitle: '¿CuántoMeLlega?', shareCta: 'Work out yours:', shareVs: 'vs.', shareEst: 'estimate',
+  wiseNear: 'Wise: only approximate near US$1,000', ppEstTag: 'estimated exchange rate',
+  ppEstNote: 'PayPal applies its 3.5% over its own base exchange rate, not over the reference rate used here. So this peso amount is an estimate: the real one may differ.',
+  wiseFar: 'At this amount the Wise fee is only an approximation: Wise publishes its table for US$1,000 and it is scaled proportionally here.',
+  sitsT: 'Where your money sits:',
+  sits: { paypal: 'balance in your PayPal account; the contract is with Operadora PayPal de México, a payment services provider, not a bank. It is not a bank deposit protected by IPAB.',
+    payoneer: 'balance at Payoneer. Its terms say it is not a bank account, the funds are not deposits and no government deposit insurance applies; Payoneer says it segregates customer funds.',
+    arq: 'balance at ARQ as a virtual asset (USDs) until you convert it to pesos.',
+    bbva: 'in your peso account at BBVA México, a bank: bank deposits are protected by IPAB up to 400,000 UDIs per person per bank.',
+    wise: 'it does not stay in Wise: it arrives in pesos straight into your bank account (CLABE). Protection depends on your bank.' },
+  arqLegal: 'USDs is a virtual asset: it is not legal tender in Mexico and it is not a bank deposit protected by IPAB. ARQ converts incoming payments to USDs (or EURc) and the service is provided by the entity ARQ names in its legal notice (DA Global Limited and/or Pier 5 S.A. de C.V.).',
+  nPaypal: ['Business merchant fee page; a personal account may have different fees.', 'The page says fees are "subject to VAT"; 16% is Mexico\'s general rate (assumption). Standard bank withdrawal is free.'],
+  nPayoneer: ['US$29.95 annual fee if you receive under US$6,000 in any 12 consecutive months (not subtracted here).', 'Fees vary by territory, payment method and the table inside your account. Card or PayPal payers: up to 3.99% + US$0.49; this assumes an ACH or bank deposit.', 'Withdrawing USD to a USD account costs a flat US$1.50; this assumes conversion to pesos; Payoneer publishes 1.2% to 4% for transfers to a recipient\'s bank. Where your case falls is an interpretation.'],
+  nArq: ['Personal: 3 USDs per US payment (Standard plan). Business: ACH free for 12 months then 3 USDs; wire free for 12 months then 10 USDs. ARQ names the digital asset USDs (not "USDc"), on both the personal and Business pages.', 'ARQ does not publish a separate conversion margin; the margin is an estimate. Checked on ARQ Mexico\'s help and legal pages on Nov 3, 2026 (ARQ shows an Oct 29, 2026 update).'],
+  nBbva: ['US$30 + VAT fee to receive an international transfer: it appears in BBVA\'s general fee schedule (Oct 2026) and on its Business page. We found no lower fee for personal accounts.', 'Intermediary banks may deduct a further US$1 to US$70 (not included). BBVA sets its own exchange rate: the margin is an estimate. Its remittance product is a different service, not a SWIFT transfer.'],
+  nWise: ['Mexico residents can open a Wise account to send pesos abroad; we did not find it offering a USD balance or USD account details. Here it only applies if the person paying you uses Wise and deposits into your CLABE.', 'Wise publishes the cost by payment method for sending US$1,000 from the US to Mexico (verified Nov 3, 2026, may change): balance US$5.71, direct debit US$7.67, bank transfer US$12.07, debit card US$18.20, credit card US$66.99. Card fees vary by card type (for example US$41.11 to US$70.10 on other variants). It is scaled to other amounts here (estimate). Uses the mid-market rate, which may differ from the reference rate you use here.']
+ }
+};
+const PLAT_VERIFIED = '2026-11-03';
+const U = {
+  upAll: ['https://support.upwork.com/hc/en-us/articles/211060918-How-to-get-paid-on-Upwork', 'Upwork: cómo cobrar'],
+  fvAll: ['https://help.fiverr.com/hc/en-us/articles/360010530058-Withdrawing-your-earnings-managing-payout-methods', 'Fiverr: retiros'],
+  dlFees: ['https://help.letsdeel.com/hc/en-gb/articles/14391381019537-About-Withdrawal-Fees-and-Withdrawal-Minimums', 'Deel: comisiones de retiro']
+};
+// v3.4: info views trimmed to the official withdrawal-fees page plus one line (T.platNote). Links checked 2026-11-03.
+const PLAT = { upwork: { name: 'Upwork', fees: U.upAll[0] }, fiverr: { name: 'Fiverr', fees: U.fvAll[0] }, deel: { name: 'Deel', fees: U.dlFees[0] } };
+const PAYER_NO = {
+  upwork: { es: 'Upwork lista PayPal, Payoneer, banco local (Direct to Local Bank), ACH a banco en EE.UU. y wire en USD; Wise no aparece entre sus métodos de retiro.', en: 'Upwork lists PayPal, Payoneer, Direct to Local Bank, ACH to a US bank and USD wire; Wise is not among its withdrawal methods.', links: [U.upAll] },
+  fiverr: { es: 'Fiverr solo lista PayPal, transferencia bancaria vía Payoneer, cuenta Payoneer y la tarjeta Fiverr Revenue Card (descontinuada).', en: 'Fiverr only lists PayPal, bank transfer via Payoneer, a Payoneer account and the Fiverr Revenue Card (discontinued).', links: [U.fvAll] }
+};
+const rname = id => (RAILS[id].label ? RAILS[id].label[lang] : RAILS[id].name);
+const NOTES = { paypal: 'nPaypal', payoneer: 'nPayoneer', arq: 'nArq', bbva: 'nBbva', wise: 'nWise' };
+const MON = { es: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'], en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] };
+
+let lang = 'es';
+try { lang = localStorage.getItem('cml-lang') === 'en' ? 'en' : 'es'; } catch (e) {}
+let rateState = { status: 'loading', value: null, date: null, source: null };
+
+const $ = id => document.getElementById(id);
+const locale = () => (lang === 'es' ? 'es-MX' : 'en-US');
+const num = n => n.toLocaleString(locale(), { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const mx = n => 'MX$' + num(n);
+const us = n => 'US$' + num(n);
+const pf = n => n.toFixed(2) + '%';
+const fmtDate = iso => {
+  const p = String(iso).split('-'); if (p.length !== 3) return String(iso);
+  const m = MON[lang][+p[1] - 1], d = +p[2];
+  return lang === 'es' ? d + ' ' + m + ' ' + p[0] : m + ' ' + d + ', ' + p[0];
+};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+async function getJSON(url, ms) {
+  const c = new AbortController(), t = setTimeout(() => c.abort(), ms);
+  try { const r = await fetch(url, { signal: c.signal }); if (!r.ok) throw new Error('http ' + r.status); return await r.json(); }
+  finally { clearTimeout(t); }
+}
+async function loadRate() {
+  try {
+    const d = await getJSON(ECB, 7000); const v = d && d.rate;
+    if (!(v > 0)) throw new Error('bad');
+    return { status: 'ok', value: v, date: d.date, source: 'ecb' };
+  } catch (e1) {
+    try {
+      const d = await getJSON(ER, 7000); const v = d && d.result === 'success' && d.rates && d.rates.MXN;
+      if (!(v > 0)) throw new Error('bad');
+      return { status: 'ok', value: v, date: new Date(d.time_last_update_unix * 1000).toISOString().slice(0, 10), source: 'er' };
+    } catch (e2) { return { status: 'fail', value: null, date: null, source: null }; }
+  }
+}
+
+function manualRate() {
+  const raw = $('ovr').value.trim();
+  if (raw === '') return { state: 'empty' };
+  const m = parseFloat(raw);
+  if (!(m > 0)) return { state: 'bad' };
+  return { state: (m < FX_MIN || m > FX_MAX) ? 'range' : 'ok', value: m };
+}
+function effectiveRate() {
+  const m = manualRate();
+  if (m.value > 0) return { value: m.value, date: null, source: 'manual' };
+  if (rateState.status === 'ok') return { value: rateState.value, date: rateState.date, source: rateState.source };
+  return null;
+}
+const payer = () => { const c = document.querySelector('input[name="payer"]:checked'); return c ? c.value : 'direct'; };
+const fill = (str, m) => str.replace(/\{(\w+)\}/g, (_, k) => (m[k] != null ? m[k] : ''));
+const mxn = n => '$' + num(n);
+function yearsN() {
+  const raw = $('nyr').value.trim();
+  if (raw === '') return { state: 'bad' };
+  const v = Number(raw);
+  if (!isFinite(v) || !(v > 0)) return { state: 'bad' };
+  if (!Number.isInteger(v)) return { state: 'frac' };
+  return v > YEAR_MAX ? { state: 'max', n: YEAR_MAX } : { state: 'ok', n: v };
+}
+function options() {
+  return {
+    ppAbroad: $('ppAbroad').checked,
+    poConv: parseFloat($('poConv').value) / 100,
+    arqMode: $('arqMode').value,
+    arqSpread: parseFloat($('arqSp').value) / 100,
+    bbvaSpread: parseFloat($('bbvaSp').value) / 100,
+    wiseAbsorb: $('wiseAbsorb').checked,
+    wiseFeePer1000: parseFloat($('wiseFund').value)
+  };
+}
+
+function renderStatic() {
+  const t = T[lang];
+  document.documentElement.lang = lang;
+  document.title = t.title;
+  document.querySelectorAll('[data-i]').forEach(el => { el.textContent = t[el.dataset.i]; });
+  $('bES').setAttribute('aria-pressed', lang === 'es');
+  $('bEN').setAttribute('aria-pressed', lang === 'en');
+  $('poV').textContent = pf(parseFloat($('poConv').value));
+  $('arqV').textContent = pf(parseFloat($('arqSp').value));
+  $('bbvaV').textContent = pf(parseFloat($('bbvaSp').value));
+  const w = $('ovrWarn'), m = manualRate();
+  w.hidden = !(m.state === 'range' || m.state === 'bad');
+  w.textContent = m.state === 'range' ? t.ovrRange : (m.state === 'bad' ? t.ovrBad : '');
+  const wiseOn = !isPlat(payer());
+  $('wiseCtl1').hidden = !wiseOn; $('wiseCtl2').hidden = !wiseOn;
+  const y = yearsN(), yw = $('nyrWarn');
+  yw.hidden = y.state === 'ok'; yw.textContent = y.state === 'bad' ? t.yrBad : (y.state === 'frac' ? t.yrFrac : (y.state === 'max' ? t.yrMax : ''));
+}
+
+function renderPayer() {
+  const t = T[lang], py = payer(), note = $('payerNote'), plat = isPlat(py);
+  ['inCard', 'asCard', 'yearCard'].forEach(id => { $(id).hidden = plat; });
+  if (py === 'direct') { note.hidden = true; return; }
+  note.hidden = false;
+  note.textContent = plat ? t.pnPlat : t.pnOther;
+  note.className = plat ? 'betan' : 'pnote';
+  note.style.marginTop = '12px';
+}
+const rateName = r => T[lang][{ ecb: 'rn_ecb', er: 'rn_er', manual: 'rn_manual' }[r.source]];
+const openMap = {};
+const wide = () => window.matchMedia && window.matchMedia('(min-width:860px)').matches;
+const linkList = ls => ls.map(l => '<a href="' + l[0] + '" target="_blank" rel="noopener">' + esc(l[1]) + ' ↗</a>').join(' · ');
+const ORDER = ['paypal', 'payoneer', 'arq', 'bbva', 'wise'];
+function renderInfo(py) {
+  const t = T[lang], P = PLAT[py], res = $('results');
+  shareText = ''; $('resT').textContent = fill(t.infoT, { P: P.name });
+  const no = ORDER.filter(id => statusOf(py, id) === 'no');
+  const cost = '<div class="pcost"><p style="margin:0">' + esc(t.platNote[py]) + '</p><div class="ver"><span class="tag pub">' + esc(t.tPub) + '</span><span>' + esc(t.costDate) + ' ' + esc(fmtDate(PLAT_VERIFIED)) + ': <a href="' + P.fees + '" target="_blank" rel="noopener">' + esc(fill(t.platLinkT, { P: P.name })) + ' ↗</a></span></div></div>';
+  const nol = no.length ? '<div class="card nolist"><h3 style="margin:0;font-size:1rem">' + esc(t.noT) + '</h3><p class="hint">' + esc(fill(t.noLead, { P: P.name })) + '</p><ul>' +
+    no.map(id => '<li><b>' + esc(rname(id)) + '</b><span class="tag no">' + esc(t.notListedTag) + '</span>: ' + esc(((PAYER_NO[py] || {})[lang]) || '') + ' ' + linkList((PAYER_NO[py] || {}).links || []) + '</li>').join('') + '</ul></div>' : '';
+  res.innerHTML = '<div class="card info"><p style="margin:0">' + esc(fill(t.infoLead, { P: P.name })) + '</p><div class="yact"><button type="button" class="btn alt" id="goDirect">' + esc(t.goDirect) + '</button></div></div>' + cost + nol;
+}
+
+function renderRate() {
+  const t = T[lang], box = $('rate'), r = effectiveRate();
+  box.className = 'rate';
+  if (r) {
+    let label = t.rateLbl;
+    if (r.source === 'ecb') label += ' ' + t.rateEcb;
+    else if (r.source === 'er') label += ' ' + t.rateEr;
+    const note = r.source === 'manual' ? t.rateManual : '';
+    box.innerHTML = '1 US$ = <b>MX$' + r.value.toFixed(4) + '</b><div class="src">' + esc(label) +
+      (r.date ? ', ' + t.rateOf + ' ' + esc(fmtDate(r.date)) : '') + esc(note ? ' · ' + note : '') +
+      (r.source === 'er' ? ' · <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">Rates By Exchange Rate API</a>' : '') +
+      '</div><div class="src">' + esc(t.rateBanxico) + ' (<a href="' + BANXICO + '" target="_blank" rel="noopener">banxico.org.mx</a>), ' + esc(t.rateBanxicoNote) + '</div>';
+  } else if (rateState.status === 'loading') {
+    box.textContent = t.loading;
+  } else {
+    box.classList.add('err'); box.textContent = t.rateFail;
+  }
+}
+
+function renderResults() {
+  const t = T[lang], res = $('results'), r = effectiveRate(), A = parseFloat($('amt').value), py = payer();
+  if (isPlat(py)) { $('yearHead').innerHTML = ''; $('shareBtn').hidden = true; renderInfo(py); return; }
+  $('resT').textContent = t.resT;
+  if (!r || !(A > 0)) { $('yearHead').innerHTML = ''; $('shareBtn').hidden = true; shareText = ''; res.innerHTML = '<div class="card">' + esc(rateState.status === 'loading' && !r ? t.loading : t.need) + '</div>'; return; }
+  const rows = calcRails(A, r.value, options());
+  const ref = A * r.value, rn = rateName(r);
+  renderYear(rows, py, A, r);
+  const tie = tied(rows) ? '<div class="tie" role="note">' + esc(t.tieN) + '</div>' : '';
+  const rk = ranked(rows), wr = rows.filter(x => UNRANKED.indexOf(x.id) >= 0);
+  res.innerHTML = tie + rk.concat(wr).map((x, i) => {
+    const unr = UNRANKED.indexOf(x.id) >= 0;
+    const meta = RAILS[x.id];
+    const notes = t[NOTES[x.id]].map(n => '<li>' + esc(n) + '</li>').join('');
+    const bd = x.items.map(it => '<tr><td>' + esc(t[it.k]) + '<span class="tag ' + it.t + '">' + esc(t[{ pub: 'tPub', est: 'tEst', sup: 'tSup' }[it.t]]) + '</span></td><td>−' + mx(it.mxn) + '</td></tr>').join('');
+    const links = linkList(meta.links);
+    const pct = x.na ? 0 : Math.max(0, Math.min(100, x.pesos / ref * 100));
+    const first = !unr && i === 0 && !x.na;
+    const topTag = first ? '<span class="tag topl">' + esc(t.topLbl) + '</span>' : '';
+    const badTag = !x.na && x.lossPct >= 20 ? '<span class="tag no">' + esc(t.bad) + '</span>' : '';
+    const ppTag = x.id === 'paypal' ? '<span class="tag est">' + esc(t.ppEstTag) + '</span>' : '';
+    const ppNote = x.id === 'paypal' && !x.na ? '<div class="extra">' + esc(t.ppEstNote) + '</div>' : '';
+    const wiseTag = x.id === 'wise' ? '<span class="tag est">' + esc(t.wiseNear) + '</span>' : '';
+    let lossHtml;
+    if (x.na) lossHtml = '';
+    else if (x.loss < 0.005) lossHtml = '<div class="loss zero">' + esc(fill(t.none, { R: rn })) + '</div>';
+    else lossHtml = '<div class="loss">−' + mx(x.loss) + ' · −' + pf(x.lossPct) + ' <small>' + esc(fill(t.loss, { R: rn })) + '</small></div>';
+    const got = x.na
+      ? '<div class="n bad">' + esc(t.naT) + '</div><div class="u">' + esc(t.naU) + '</div>'
+      : '<div class="n">' + mx(x.pesos) + '</div><div class="u">' + esc(t.recv) + '</div>';
+    const extra = x.extra ? '<div class="extra">' + esc(t.wiseExtra) + ' <b>' + us(x.extra.usd) + ' (' + mx(x.extra.mxn) + ')</b></div>' : '';
+    const wiseFar = x.id === 'wise' && (A < RULES.wise.nearMin || A > RULES.wise.nearMax) ? '<div class="extra">' + esc(t.wiseFar) + '</div>' : '';
+    const verTag = py === 'other' ? '<span class="tag chk">' + esc(t.verifyOther) + '</span>' : '';
+    const legal = '<div class="legal"><b>' + esc(t.sitsT) + '</b> ' + esc(t.sits[x.id]) + (x.id === 'arq' ? ' ' + esc(t.arqLegal) + ' ' + esc(t.arqRes) + ' ' + linkList([[ARQ_TR, 'arqfinance.com/es-MX/transparency']]) : '') + '</div>';
+    const verTxt = meta.ver ? (meta.chg ? fill(t.pubChg, { D: fmtDate(meta.ver) }) : t.pubOn + ' ' + fmtDate(meta.ver)) : t.pubOn + ' ' + fmtDate(VERIFIED);
+    const isOpen = openMap[x.id] != null ? openMap[x.id] : wide();
+    return '<article class="rail' + (first ? ' first' : '') + (unr ? ' unr' : '') + (x.na ? ' na' : '') + '">' +
+      '<div class="head">' + (unr ? '' : '<div class="rank">' + (i + 1) + '</div>') +
+      '<div class="ttl"><h3>' + esc(unr ? t.wiseCardT : rname(x.id)) + topTag + verTag + badTag + ppTag + wiseTag + '</h3><div class="sub">' + esc(meta.sub[lang]) + '</div></div>' +
+      '<div class="got">' + got + '</div></div>' +
+      (unr ? '<p class="hint" style="margin:6px 0 0">' + esc(t.wiseCardN) + '</p>' : '') + lossHtml + (x.na ? '' : '<div class="bar" aria-hidden="true"><i style="width:' + pct.toFixed(1) + '%"></i></div>') +
+      extra + ppNote + wiseFar + legal +
+      '<details class="more" data-id="' + x.id + '"' + (isOpen ? ' open' : '') + '><summary>' + esc(t.moreT) + '</summary>' +
+      (bd ? '<table class="bd">' + bd + '</table>' : '') +
+      '<ul class="notes">' + notes + '</ul>' +
+      '<div class="ver"><span class="tag pub">' + esc(t.tPub) + '</span><span>' + esc(verTxt) + '. ' + esc(t.source) + ': ' + links + '</span></div></details>' +
+      '</article>';
+  }).join('');
+}
+
+let shareText = '';
+function renderYear(all, py, A, r) {
+  const t = T[lang], head = $('yearHead'), btn = $('shareBtn'), y = yearsN();
+  shareText = ''; btn.hidden = true; $('shareMsg').textContent = '';
+  const s = y.state === 'bad' ? null : yearly(all, py, y.n);
+  if (y.state === 'bad' || y.state === 'frac') { head.innerHTML = ''; return; }
+  if (!s) { head.innerHTML = '<small>' + esc(py === 'other' ? t.yrNeed : t.yrNone) + '</small>'; return; }
+  const W = rname(s.worst), B = rname(s.best);
+  const headline = fill(t.yrHead, { W: W, X: '$' + Math.round(s.perYear).toLocaleString(locale()) });
+  const sub = fill(t.yrSub, { N: y.n.toLocaleString(locale()), A: us(A), B: B, W: W, D: '$' + Math.round(s.perPayment).toLocaleString(locale()), R: rateName(r), V: r.value.toFixed(4) });
+  head.innerHTML = esc(headline) + '<small>' + esc(sub) + '</small>';
+  shareText = headline + ' (' + t.shareVs + ' ' + B + ', ' + y.n + ' × ' + us(A) + ', ' + t.shareEst + ', ' + rateName(r) + ') ' + t.shareCta;
+  btn.hidden = false;
+}
+async function share() {
+  if (!shareText) return;
+  const t = T[lang], msg = $('shareMsg'), full = shareText + ' ' + SITE_URL;
+  if (navigator.share) {
+    try { await navigator.share({ title: t.shareTitle, text: shareText, url: SITE_URL }); return; }
+    catch (e) { if (e && e.name === 'AbortError') return; }
+  }
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) { await navigator.clipboard.writeText(full); msg.textContent = t.shareCopied; return; }
+    throw new Error('no clipboard');
+  } catch (e) {
+    try {
+      const ta = document.createElement('textarea'); ta.value = full; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); const ok = document.execCommand('copy'); document.body.removeChild(ta);
+      msg.textContent = ok ? t.shareCopied : t.shareFail;
+    } catch (e2) { msg.textContent = t.shareFail; }
+  }
+}
+
+function renderAll() { renderStatic(); renderPayer(); renderRate(); renderResults(); }
+function setLang(l) { lang = l; try { localStorage.setItem('cml-lang', l); } catch (e) {} renderAll(); }
+
+$('bES').addEventListener('click', () => setLang('es'));
+$('bEN').addEventListener('click', () => setLang('en'));
+$('shareBtn').addEventListener('click', share);
+$('results').addEventListener('toggle', e => { const d = e.target; if (d && d.dataset && d.dataset.id) openMap[d.dataset.id] = d.open; }, true);
+$('results').addEventListener('click', e => { if (e.target && e.target.id === 'goDirect') { document.querySelector('input[name="payer"][value="direct"]').checked = true; renderAll(); window.scrollTo(0, 0); } });
+document.querySelectorAll('input[name="payer"]').forEach(el => el.addEventListener('change', renderAll));
+['nyr', 'amt', 'ovr', 'ppAbroad', 'poConv', 'arqMode', 'arqSp', 'bbvaSp', 'wiseFund', 'wiseAbsorb'].forEach(id => {
+  $(id).addEventListener('input', renderAll);
+});
+
+renderAll();
+loadRate().then(r => { rateState = r; renderAll(); });
+</script>
+</body>
+</html>
