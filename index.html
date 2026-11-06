@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="google-site-verification" content="WywnAtFSTyrHcZNU1RzhveUrDjRqoTpaKjNL_opW8HE">
 <title>¿CuántoMeLlega? | Cuántos pesos recibes de un pago en dólares</title>
 <meta name="description" content="Compara cuántos pesos mexicanos te llegan de un pago en USD por PayPal, Payoneer, ARQ, BBVA y Wise, según quién te paga (cliente directo; Upwork, Fiverr y Deel solo como información beta). Tarifas publicadas con fecha y fuente.">
 <meta name="theme-color" content="#0b7a4b">
@@ -142,6 +144,117 @@ details.chg ul.log{margin:6px 0 10px;font-size:.88rem}
  .lower{grid-template-columns:1fr 1fr}
 }
 </style>
+<script>
+(function () {
+  'use strict';
+  var ENDPOINT = 'https://cuantomellega.goatcounter.com/count';
+  var SCRIPT = 'https://gc.zgo.at/count.js';
+  // count.js always sets q from location.search and has no setting for it.
+  // null/undefined referrer is replaced with document.referrer; only '' stays empty.
+  function hrefDirty() {
+    try {
+      var href = String(location.href || '');
+      return !!(location.search || location.hash || href.indexOf('?') !== -1 || href.indexOf('#') !== -1);
+    } catch (e) { return true; }
+  }
+  function stripUrl() {
+    try {
+      if (!window.history || typeof history.replaceState !== 'function') return false;
+      var path = String(location.pathname || '/');
+      if (path.charAt(0) !== '/' || path.indexOf('//') === 0) return false;
+      if (/[?#\\@\s]|%3f|%23/i.test(path)) return false;
+      if (hrefDirty()) history.replaceState(null, '', path);
+      if (hrefDirty()) return false;
+      if (String(location.pathname || '/') !== path) return false;
+      return true;
+    } catch (e) { return false; }
+  }
+  function countUrlUnsafe(url) {
+    var raw = String(url || '');
+    if (raw.toLowerCase().indexOf('goatcounter.com/count') === -1) return false;
+    try {
+      var u = new URL(raw, ENDPOINT);
+      var allowed = { p: 1, t: 1, s: 1, b: 1, rnd: 1 };
+      var seen = {};
+      if (u.protocol !== 'https:' || u.hostname !== 'cuantomellega.goatcounter.com' || u.pathname !== '/count') return true;
+      if (u.username || u.password || u.hash) return true;
+      if (u.searchParams.get('p') !== '/') return true;
+      var bad = false;
+      u.searchParams.forEach(function (v, k) {
+        if (!allowed[k] || seen[k]) bad = true;
+        seen[k] = 1;
+        if (String(v).indexOf('@') !== -1 || String(v).indexOf('#') !== -1) bad = true;
+      });
+      if (bad || !seen.p) return true;
+      if (decodeURIComponent(u.search).indexOf('@') !== -1) return true;
+      return false;
+    } catch (e) { return true; }
+  }
+  function installGuard() {
+    var beaconOk = true, imageOk = false, fetchOk = true, xhrOk = true;
+    try {
+      if (typeof navigator.sendBeacon === 'function') {
+        var origBeacon = navigator.sendBeacon.bind(navigator);
+        var wrapped = function (url, data) {
+          if (countUrlUnsafe(url)) return true;
+          return origBeacon(url, data);
+        };
+        navigator.sendBeacon = wrapped;
+        beaconOk = navigator.sendBeacon === wrapped;
+      }
+    } catch (e) { beaconOk = false; }
+    try {
+      var desc = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'src');
+      if (desc && typeof desc.set === 'function' && desc.configurable) {
+        Object.defineProperty(HTMLImageElement.prototype, 'src', {
+          configurable: true, enumerable: desc.enumerable, get: desc.get,
+          set: function (value) {
+            if (countUrlUnsafe(value)) return;
+            return desc.set.call(this, value);
+          }
+        });
+        imageOk = true;
+      }
+    } catch (e) { imageOk = false; }
+    try {
+      if (typeof window.fetch === 'function') {
+        var origFetch = window.fetch.bind(window);
+        window.fetch = function (input, init) {
+          var u = typeof input === 'string' ? input : (input && input.url) || '';
+          if (countUrlUnsafe(u)) return Promise.resolve(new Response('', { status: 204 }));
+          return origFetch(input, init);
+        };
+      }
+    } catch (e) { fetchOk = false; }
+    try {
+      var origOpen = XMLHttpRequest.prototype.open;
+      var origSend = XMLHttpRequest.prototype.send;
+      XMLHttpRequest.prototype.open = function (method, url) {
+        this.__cmlBlock = countUrlUnsafe(url);
+        return origOpen.apply(this, arguments);
+      };
+      XMLHttpRequest.prototype.send = function () {
+        if (this.__cmlBlock) return;
+        return origSend.apply(this, arguments);
+      };
+    } catch (e) { xhrOk = false; }
+    if (!beaconOk || !imageOk || !fetchOk || !xhrOk) return false;
+    return true;
+  }
+  try {
+    if (!stripUrl() || !installGuard() || hrefDirty()) return;
+    window.goatcounter = { path: '/', referrer: '', no_events: true };
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = SCRIPT;
+    s.referrerPolicy = 'no-referrer';
+    s.setAttribute('data-goatcounter', ENDPOINT);
+    s.setAttribute('data-goatcounter-settings', '{"path":"/","referrer":"","no_events":true}');
+    if (s.src !== SCRIPT || s.getAttribute('data-goatcounter') !== ENDPOINT) return;
+    document.head.appendChild(s);
+  } catch (e) {}
+})();
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -258,7 +371,7 @@ details.chg ul.log{margin:6px 0 10px;font-size:.88rem}
   <div data-i="f2">No somos entidad financiera ni movemos dinero. Solo comparamos.</div>
   <div data-i="f3">No incluye impuestos sobre tus ingresos (ISR). El IVA de las comisiones puede ser acreditable si facturas; consulta a tu contador.</div>
   <div data-i="f4">Los resultados son una simulación, no una cotización garantizada.</div>
-  <div data-i="f6">Sin cookies. El tipo de cambio se consulta en frankfurter.dev y, si falla, open.er-api.com.</div>
+  <div id="f6">Analítica sin cookies y con panel privado: la dirección IP se procesa de forma temporal y se guardan datos técnicos agregados, no lo que escribes en la calculadora (<a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad de GoatCounter</a>). El tipo de cambio se consulta en frankfurter.dev y, si falla, open.er-api.com.</div>
   <div><span data-i="f5">Hecho por un desarrollador independiente</span> · <a id="reportLink" href="https://github.com/cuantomellega/cuantomellega.github.io/issues" target="_blank" rel="noopener" data-i="reportL">Reportar un error o una tarifa</a> <span class="rp" data-i="reportP">(los reportes en GitHub son públicos: no incluyas datos personales)</span></div>
  </footer>
 
@@ -425,7 +538,8 @@ const T = {
   f3: 'No incluye impuestos sobre tus ingresos (ISR). El IVA de las comisiones puede ser acreditable si facturas; consulta a tu contador.',
   f4: 'Los resultados son una simulación, no una cotización garantizada.',
   f5: 'Hecho por un desarrollador independiente',
-  f6: 'Sin cookies. El tipo de cambio se consulta en frankfurter.dev y, si falla, open.er-api.com.',
+  f6: 'Analítica sin cookies y con panel privado: la dirección IP se procesa de forma temporal y se guardan datos técnicos agregados, no lo que escribes en la calculadora ({link}). El tipo de cambio se consulta en frankfurter.dev y, si falla, open.er-api.com.',
+  f6link: 'Política de privacidad de GoatCounter',
   title: '¿CuántoMeLlega? | Cuántos pesos recibes de un pago en dólares',
   wiseCardT: 'Si tu cliente paga con Wise',
   wiseCardN: 'Fuera del ranking: solo aplica si quien te paga ya usa Wise; no es una vía que puedas abrir tú desde México.',
@@ -525,7 +639,8 @@ const T = {
   f3: 'Income taxes (ISR) are not included. VAT on fees may be creditable if you issue invoices; ask your accountant.',
   f4: 'Results are a simulation, not a guaranteed quote.',
   f5: 'Made by an independent developer',
-  f6: 'No cookies. The exchange rate comes from frankfurter.dev and, if that fails, open.er-api.com.',
+  f6: 'Cookie-free analytics with a private dashboard: the IP address is processed temporarily, and aggregate technical data is stored, not what you type in the calculator ({link}). The exchange rate comes from frankfurter.dev and, if that fails, open.er-api.com.',
+  f6link: 'GoatCounter privacy policy',
   title: '¿CuántoMeLlega? | How many pesos you get from a dollar payment',
   wiseCardT: 'If your client pays with Wise',
   wiseCardN: 'Outside the ranking: it only applies if the person paying you already uses Wise; it is not a route you can open yourself from Mexico.',
@@ -683,11 +798,27 @@ function options() {
   };
 }
 
+function renderPrivacy() {
+  const el = $('f6');
+  if (!el) return;
+  const t = T[lang], parts = String(t.f6).split('{link}');
+  el.textContent = '';
+  if (parts.length !== 2) { el.textContent = String(t.f6).split('{link}').join(t.f6link || ''); return; }
+  el.appendChild(document.createTextNode(parts[0]));
+  const a = document.createElement('a');
+  a.href = 'https://www.goatcounter.com/help/privacy';
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  a.textContent = t.f6link || '';
+  el.appendChild(a);
+  el.appendChild(document.createTextNode(parts[1]));
+}
 function renderStatic() {
   const t = T[lang];
   document.documentElement.lang = lang;
   document.title = t.title;
   document.querySelectorAll('[data-i]').forEach(el => { el.textContent = t[el.dataset.i]; });
+  renderPrivacy();
   $('bES').setAttribute('aria-pressed', lang === 'es');
   $('bEN').setAttribute('aria-pressed', lang === 'en');
   $('poV').textContent = pf(parseFloat($('poConv').value));
