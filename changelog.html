@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="google-site-verification" content="WywnAtFSTyrHcZNU1RzhveUrDjRqoTpaKjNL_opW8HE">
+<title>Historial de cambios | ¿CuántoMeLlega?</title>
+<meta name="description" content="Historial de cambios de ¿CuántoMeLlega? La versión 3.6 cambia la presentación, no el cálculo.">
+<link rel="canonical" href="https://cuantomellega.github.io/changelog.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Figtree:wght@400..700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b7a4b'/%3E%3Ctext x='32' y='44' font-family='sans-serif' font-size='40' font-weight='700' text-anchor='middle' fill='white'%3E%24%3C/text%3E%3C/svg%3E">
+<style>
+/* Tokens only. sans-serif is the generic fallback while Bricolage Grotesque and Figtree load. */
+:root {
+  --bg: #f3f6f4;
+  --surface: #ffffff;
+  --ink: #14211b;
+  --muted: #3e5148;
+  --line: #61786f;
+  --track: #e4ece8;
+  --brand: #0b7a4b;
+  --brand-ink: #ffffff;
+  --soft: #e7f5ee;
+  --amber: #7a4e00;
+  --amber-bg: #fff6e4;
+  --danger: #9e221c;
+  --danger-bg: #fdeceb;
+  --chip: #e7ece9;
+  --shadow: 0 12px 32px rgb(20 33 27 / 0.08);
+  --r-sm: 8px;
+  --r-md: 14px;
+  --pill: 999px;
+  --display: "Bricolage Grotesque", sans-serif;
+  --text: "Figtree", sans-serif;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+html, body { max-width: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 16px;
+  line-height: 1.5;
+  padding-bottom: 112px;
+}
+body::before {
+  content: "";
+  display: block;
+  height: 4px;
+  background: var(--brand);
+}
+img { max-width: 100%; }
+a { color: var(--brand); }
+a:hover { text-decoration-thickness: 2px; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus { outline: none; }
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+a, button, input, select, summary, .chip span { scroll-margin-top: 16px; scroll-margin-bottom: 120px; }
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip {
+  position: absolute;
+  left: 12px;
+  top: 8px;
+  transform: translateY(-140%);
+  background: var(--surface);
+  color: var(--brand);
+  border-radius: var(--pill);
+  padding: 10px 14px;
+  min-height: 44px;
+  z-index: 6;
+}
+.skip:focus { transform: translateY(0); }
+.wrap { max-width: 760px; margin: 0 auto; padding: 8px 16px 28px; min-width: 0; }
+.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; min-height: 56px; min-width: 0; }
+.logo { font-family: var(--display); font-weight: 800; font-size: clamp(1.05rem, 5.2vw, 1.3rem); letter-spacing: -0.03em; min-width: 0; }
+.tools { margin-left: auto; flex: 0 0 auto; }
+.logo span { color: var(--brand); }
+.tools { display: flex; align-items: center; gap: 8px; }
+.verlink {
+  color: var(--muted);
+  font-weight: 700;
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 4px;
+}
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: var(--pill); overflow: visible; background: var(--surface); }
+.lang button {
+  border: 0;
+  background: transparent;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 14px;
+  font-weight: 700;
+  color: var(--muted);
+}
+.lang button:first-child { border-radius: var(--pill) 0 0 var(--pill); }
+.lang button:last-child { border-radius: 0 var(--pill) var(--pill) 0; }
+.lang button:focus-visible { position: relative; z-index: 2; }
+.lang button[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); }
+h1 {
+  font-family: var(--display);
+  font-size: 1.7rem;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  margin: 8px 0 6px;
+  font-weight: 750;
+}
+.lead { color: var(--muted); margin: 0 0 14px; }
+.answer {
+  background: var(--surface);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  min-width: 0;
+  max-width: 100%;
+}
+.answer-grid { min-width: 0; max-width: 100%; }
+.amt-label, .amount, .win, .meta { min-width: 0; max-width: 100%; }
+.amount {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 0 12px;
+  background: var(--surface);
+  min-height: 56px;
+}
+.amount:focus-within { border-color: var(--brand); outline: 3px solid var(--brand); outline-offset: 2px; }
+.amount span { font-family: var(--display); font-weight: 700; color: var(--muted); }
+.amount input {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 8px 0;
+  background: transparent;
+  font-family: var(--display);
+  font-size: 2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+.amount input:focus-visible { outline: none; }
+label { display: block; font-weight: 700; margin: 0 0 6px; }
+.win { margin-top: 16px; container-type: inline-size; padding-right: 4px; }
+.win-kicker, .win-who, .win-sub { overflow-wrap: anywhere; }
+.win-kicker { margin: 0; font-weight: 650; font-size: 0.98rem; }
+.win-who { margin: 2px 0 0; font-family: var(--display); font-weight: 700; font-size: 1.15rem; }
+.win-num {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 2px 0 0;
+  font-family: var(--display);
+  font-weight: 750;
+  font-size: clamp(1.7rem, 12cqi, 4.25rem);
+  line-height: 0.95;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  color: var(--brand);
+  white-space: nowrap;
+}
+.win-num.is-msg {
+  font-family: var(--text);
+  font-size: 1.15rem;
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+.win-sub { margin: 4px 0 0; color: var(--muted); }
+.rate { margin-top: 12px; color: var(--ink); }
+.rate b { font-family: var(--display); font-variant-numeric: tabular-nums; font-size: 1.15rem; }
+.rate .src { color: var(--muted); font-size: 0.85rem; margin-top: 2px; }
+.rate.err { color: var(--danger); background: var(--danger-bg); border-radius: var(--r-sm); padding: 10px 12px; }
+.override { margin-top: 12px; }
+.override input, select, .year input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 8px 12px;
+  background: var(--surface);
+}
+.hint { color: var(--muted); font-size: 0.85rem; margin: 4px 0 0; }
+.warn, .betan, .pnote {
+  color: var(--ink);
+  background: var(--amber-bg);
+  border-radius: var(--r-sm);
+  padding: 8px 10px;
+  margin: 8px 0 0;
+}
+.warn { color: var(--amber); }
+.warn.err, .err { color: var(--danger); background: var(--danger-bg); }
+.pnote, .betan { margin-top: 10px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; max-width: 100%; }
+.chip { position: relative; margin: 0; font-weight: 700; max-width: 100%; }
+.chip input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; left: 0; top: 0; }
+.chip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 8px 14px;
+  border: 2px solid var(--line);
+  border-radius: var(--pill);
+  background: var(--surface);
+  white-space: normal;
+}
+.chip input:checked + span { border-color: var(--brand); background: var(--soft); color: var(--brand); }
+.chip input:focus-visible + span { outline: 3px solid var(--brand); outline-offset: 2px; }
+h2 { font-family: var(--display); font-size: 1.25rem; line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 10px; }
+.block { margin-top: 22px; }
+.tie { background: var(--soft); color: var(--ink); border-radius: var(--r-sm); padding: 10px 12px; font-weight: 650; margin: 0 0 8px; }
+.rrow { border-top: 1px solid var(--line); min-width: 0; max-width: 100%; }
+.rrow-btn {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) minmax(7.25rem, 46%);
+  grid-template-areas: "rank who fig" "bar bar bar";
+  gap: 2px 10px;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 10px 0 8px;
+  min-height: 44px;
+  color: inherit;
+}
+.rank { grid-area: rank; font-family: var(--display); font-weight: 800; font-size: 1.15rem; color: var(--brand); font-variant-numeric: tabular-nums; }
+.who { grid-area: who; min-width: 0; }
+.who-name { font-family: var(--display); font-weight: 700; font-size: 1.02rem; }
+.who-sub, .who .hint { display: block; color: var(--muted); font-size: 0.82rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.fig { grid-area: fig; display: flex; flex-direction: column; align-items: flex-end; text-align: right; width: 100%; min-width: 0; max-width: 100%; }
+.fig-amt { display: block; width: 100%; max-width: 100%; font-family: var(--display); font-weight: 750; font-variant-numeric: tabular-nums; font-size: 1.15rem; letter-spacing: -0.03em; white-space: nowrap; }
+.fig-delta { color: var(--amber); font-variant-numeric: tabular-nums; font-size: 0.78rem; font-weight: 700; max-width: 100%; overflow-wrap: anywhere; }
+.bar { grid-area: bar; height: 8px; background: var(--track); border-radius: var(--pill); overflow: hidden; margin-top: 4px; }
+.bar i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--brand);
+  transform: scaleX(var(--w, 0));
+  transform-origin: left center;
+}
+html.motion .bar i.bar-enter {
+  animation: barIn 500ms ease-out both;
+  animation-delay: calc(var(--i, 0) * 80ms);
+}
+@keyframes barIn {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(var(--w, 0)); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.motion .rrow-btn, html.motion .btn, html.motion summary::after {
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+  html.motion .rrow-btn:hover, html.motion .btn:hover { transform: translateY(-1px); }
+  html.motion .rrow-btn:active, html.motion .btn:active { transform: scale(0.985); }
+}
+.rdetail { padding: 0 0 12px 2.6rem; }
+.tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--pill);
+  vertical-align: middle;
+}
+.tag.est { background: var(--amber-bg); color: var(--amber); }
+.tag.pub, .tag.topl { background: var(--soft); color: var(--brand); }
+.tag.sup, .tag.mute { background: var(--chip); color: var(--muted); }
+.tag.chk { background: var(--amber-bg); color: var(--amber); }
+.loss { margin: 8px 0; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--amber); }
+.loss.zero { color: var(--brand); }
+.loss small { display: block; font-weight: 500; color: var(--muted); }
+.extra, .sits { margin-top: 8px; font-size: 0.88rem; background: var(--amber-bg); color: var(--ink); border-radius: var(--r-sm); padding: 8px 10px; }
+.notes { margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 0.85rem; }
+.ver { margin-top: 8px; font-size: 0.82rem; color: var(--muted); }
+.bd { width: 100%; border-collapse: collapse; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+.bd td { padding: 6px 0; border-top: 1px solid var(--line); vertical-align: top; }
+.bd td:last-child { text-align: right; white-space: nowrap; padding-left: 8px; }
+.sidehead { margin: 16px 0 0; font-size: 0.95rem; color: var(--muted); }
+.year label { margin-top: 4px; }
+.yhead { margin-top: 10px; font-family: var(--display); font-size: 1.15rem; font-weight: 750; line-height: 1.3; color: var(--amber); }
+.yhead small { display: block; font-family: var(--text); font-weight: 500; color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+.yact { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.btn {
+  border: 0;
+  background: var(--brand);
+  color: var(--brand-ink);
+  font-weight: 700;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: var(--pill);
+}
+.btn.alt { background: var(--surface); color: var(--brand); border: 2px solid var(--brand); }
+.rule, .noteblock {
+  background: var(--surface);
+  border-radius: var(--r-md);
+  padding: 12px 14px;
+  margin-top: 12px;
+}
+.noteblock h3 { margin: 0 0 6px; font-size: 1rem; }
+.noteblock p { margin: 0; }
+.plain { margin: 8px 0 0; padding-left: 18px; }
+.assume, .legal, .news {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 0 14px 4px;
+}
+.assume summary, .legal summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-family: var(--display);
+  font-weight: 750;
+  padding: 8px 0;
+  list-style: none;
+}
+.assume summary::-webkit-details-marker, .legal summary::-webkit-details-marker { display: none; }
+summary::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin-left: auto;
+  border-right: 2px solid var(--brand);
+  border-bottom: 2px solid var(--brand);
+  transform: translateY(-2px) rotate(45deg);
+  flex: none;
+}
+details[open] > summary::after { transform: translateY(2px) rotate(-135deg); }
+.ctl { padding: 10px 0; border-top: 1px solid var(--line); }
+.ctl.first { border-top: 0; }
+.ctl .row { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.ctl .name { font-weight: 700; }
+.ctl .val { font-variant-numeric: tabular-nums; font-weight: 700; }
+input[type="range"] { width: 100%; accent-color: var(--brand); min-height: 44px; }
+.tog { display: flex; gap: 10px; align-items: flex-start; font-weight: 700; margin: 0; min-height: 44px; }
+.tog input { margin-top: 4px; width: 20px; height: 20px; accent-color: var(--brand); }
+.news { padding: 14px; }
+.news h2 { margin-bottom: 6px; }
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  background: var(--surface);
+  border: 1px dashed var(--muted);
+  color: var(--muted);
+  border-radius: var(--pill);
+  padding: 6px 14px;
+  font-weight: 700;
+}
+.legal p, .legal div { margin: 0 0 8px; color: var(--muted); font-size: 0.9rem; }
+.legal b { color: var(--ink); }
+footer { color: var(--muted); font-size: 0.9rem; margin-top: 18px; }
+.dock {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  max-width: calc(100% - 24px);
+  padding: 8px 16px;
+  background: var(--brand);
+  color: var(--brand-ink);
+  border-radius: var(--pill);
+}
+.dock[hidden] { display: none; }
+.dock > span { min-width: 0; overflow-wrap: anywhere; }
+.dock b { display: inline-block; max-width: 58%; font-family: var(--display); font-variant-numeric: tabular-nums; font-size: 1.15rem; white-space: nowrap; vertical-align: middle; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@media (min-width: 800px) {
+  h1 { font-size: 2.2rem; }
+  .answer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "label num" "input num" "meta num";
+    gap: 8px 28px;
+    align-items: start;
+  }
+  .amt-label { grid-area: label; }
+  .amount { grid-area: input; }
+  .win { grid-area: num; margin-top: 0; text-align: right; }
+  .win-kicker { text-wrap: balance; }
+  .meta { grid-area: meta; }
+  .fig-amt { font-size: 1.35rem; }
+}
+
+</style>
+<script>
+(function () {
+  try {
+    if (!window.history || typeof history.replaceState !== 'function') return;
+    var href = String(location.href || '');
+    if (!location.search && !location.hash && href.indexOf('?') < 0 && href.indexOf('#') < 0) return;
+    var path = String(location.pathname || '/');
+    if (path.charAt(0) !== '/' || path.indexOf('//') === 0) return;
+    if (/[?#\@\s]|%3f|%23/i.test(path)) return;
+    history.replaceState(null, '', path);
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+ <header class="top">
+  <a class="logo" href="index.html">¿Cuánto<span>MeLlega</span>?</a>
+  <a class="verlink" href="index.html">v3.6</a>
+ </header>
+ <h1>Historial de cambios</h1>
+ <p class="lead">Changelog</p>
+ <section class="block">
+  <h2>Español</h2>
+  <ul class="plain"><li>v3.6, 6 nov 2026: cambia la presentación, no las cuentas. El monto y el mayor resultado estimado quedan arriba; las vías van en filas; los costos estimados, en un acordeón; este historial tiene su propia página y no envía analítica. Tipografía: Bricolage Grotesque y Figtree, desde Google Fonts.</li>
+<li>v3.5, 6 nov 2026: meta de Google Search Console; GoatCounter con ruta fija /, referente vacío y sin eventos. La consulta de la página se quita antes de cargar el script y, si no se puede, no hay analítica. El aviso cita el tratamiento temporal de la IP y la política de GoatCounter.</li>
+<li>v3.4, 3 nov 2026: Wise sale del ranking y va aparte («Si tu cliente paga con Wise»); textos en el HTML para buscadores y sin JavaScript; nota de reservas de USDs según ARQ; rango de Payoneer desde 0.5%; línea de privacidad; vistas de Upwork, Fiverr y Deel simplificadas.</li>
+<li>v3.3, 3 nov 2026: el costo al año ya no compara contra Wise (solo aplica si tu cliente lo usa); nota de Wise para residentes en México corregida; «dónde vive tu dinero» en cada vía; Wise marcado como no disponible con Upwork; etiqueta «pierdes más de 20%»; aviso de que no es asesoría financiera.</li>
+<li>v3.2, 3 nov 2026: Upwork, Fiverr y Deel pasan a una vista informativa (beta) sin ranking ni cifras en pesos; «Otro» ya no calcula costo al año; ARQ corregido a USDs; el tipo de cambio de cada resultado dice qué fuente se usó; todos los totales marcados como estimados; empate técnico señalado; canal para reportar errores.</li>
+<li>v3.1, 3 nov 2026: tabla de Wise actualizada (verificada 3 nov 2026, puede cambiar); titular anual más cauto; PayPal marcado como estimación.</li>
+<li>v3, 3 nov 2026: primero eliges quién te paga (cliente directo, Upwork, Fiverr, Deel u otro) y las vías se filtran o se marcan; costo al año con botón de compartir; tipo de cambio de referencia (BCE, diario) con el mismo nombre en toda la página.</li>
+<li>v2, 28 oct 2026: ARQ personal y Business, Wise según forma de pago, etiquetas por línea, topes en cero y validaciones.</li>
+<li>v1, 28 oct 2026: PayPal MX, Payoneer, ARQ, BBVA México y Wise; tipo de cambio de referencia (BCE, diario) con respaldo y campo manual.</li></ul>
+ </section>
+ <section class="block">
+  <h2>English</h2>
+  <ul class="plain"><li>v3.6, Nov 6, 2026: presentation changes, the math does not. The amount and the highest estimated result sit at the top; routes are rows; estimated costs sit in an accordion; this history has its own page and does not send analytics. Type: Bricolage Grotesque and Figtree, from Google Fonts.</li>
+<li>v3.5, Nov 6, 2026: Google Search Console meta; GoatCounter with a fixed path /, an empty referrer and no events. The page query is removed before the script loads and, if that fails, analytics is skipped. The notice names temporary IP processing and the GoatCounter policy.</li>
+<li>v3.4, Nov 3, 2026: Wise leaves the ranking and gets its own card ("If your client pays with Wise"); text in the HTML for search engines and no-JS; USDs reserves note per ARQ; Payoneer range from 0.5%; privacy line; simpler Upwork, Fiverr and Deel views.</li>
+<li>v3.3, Nov 3, 2026: the yearly cost no longer compares against Wise (it only applies if your client uses it); Wise note for Mexico residents corrected; "where your money sits" on every route; Wise marked unavailable with Upwork; "you lose over 20%" tag; not-financial-advice notice.</li>
+<li>v3.2, Nov 3, 2026: Upwork, Fiverr and Deel become an info-only view (beta) with no ranking or peso figures; "Other" no longer calculates a yearly cost; ARQ corrected to USDs; each result names the exchange-rate source used; all totals marked as estimates; practical ties flagged; a channel to report errors.</li>
+<li>v3.1, Nov 3, 2026: Wise table updated (verified Nov 3, 2026, may change); softer yearly headline; PayPal flagged as an estimate.</li>
+<li>v3, Nov 3, 2026: you first pick who pays you (direct client, Upwork, Fiverr, Deel or other) and routes are filtered or flagged; yearly cost with a share button; one name for the reference rate (ECB, daily) across the page.</li>
+<li>v2, Oct 28, 2026: ARQ personal and Business, Wise by payment method, per-line tags, zero floors and input checks.</li>
+<li>v1, Oct 28, 2026: PayPal MX, Payoneer, ARQ, BBVA México and Wise; reference rate (ECB, daily) with fallback and a manual field.</li></ul>
+ </section>
+ <details class="legal block">
+  <summary>Avisos legales y privacidad / Legal notices and privacy</summary>
+  <div id="f6">Analítica sin cookies y con panel privado: la dirección IP se procesa de forma temporal y se guardan datos técnicos agregados, no lo que escribes en la calculadora (<a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad de GoatCounter</a>). El tipo de cambio se consulta en frankfurter.dev y, si falla, open.er-api.com.</div>
+  <p>Cookie-free analytics with a private dashboard: the IP address is processed temporarily, and aggregate technical data is stored, not what you type in the calculator (<a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener noreferrer">GoatCounter privacy policy</a>). The exchange rate comes from frankfurter.dev and, if that fails, open.er-api.com.</p>
+  <p>Las fuentes se cargan desde Google Fonts. Esa solicitud envía a Google datos técnicos, como la dirección IP y el agente de usuario (<a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener noreferrer">Privacidad de Google Fonts</a>).</p>
+  <p>Fonts load from Google Fonts. That request sends Google technical data, such as the IP address and the user agent (<a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener noreferrer">Google Fonts privacy</a>).</p>
+ </details>
+ <footer><a href="index.html">Volver a la calculadora / Back to the calculator</a></footer>
+</div>
+</body>
+</html>

@@ -15,134 +15,424 @@
 <meta property="og:description" content="Compara PayPal, Payoneer, ARQ, BBVA y Wise con tarifas publicadas, fecha y fuente. Sin enlaces de afiliado.">
 <meta property="og:locale" content="es_MX">
 <meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b7a4b'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-size='40' font-weight='700' text-anchor='middle' fill='white'%3E%24%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Figtree:wght@400..700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b7a4b'/%3E%3Ctext x='32' y='44' font-family='sans-serif' font-size='40' font-weight='700' text-anchor='middle' fill='white'%3E%24%3C/text%3E%3C/svg%3E">
 <style>
-:root{--bg:#f6f7f4;--card:#fff;--ink:#16211b;--mute:#5d6b63;--line:#e3e8e2;--brand:#0b7a4b;--brand-ink:#fff;--soft:#e8f4ed;--warn:#8a5a00;--warn-bg:#fff6df;--bad:#b3261e;--bad-bg:#fde7e5;--r:16px}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-a{color:var(--brand)}
-.wrap{max-width:1040px;margin:0 auto;padding:16px}
-header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 16px}
-.logo{font-weight:800;font-size:1.35rem;letter-spacing:-.02em}
-.logo span{color:var(--brand)}
-.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
-.lang button{border:0;background:transparent;padding:6px 14px;font:inherit;font-weight:600;cursor:pointer;color:var(--mute)}
-.lang button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
-h1{font-size:1.5rem;line-height:1.2;margin:0 0 6px;letter-spacing:-.02em}
-.lead{color:var(--mute);margin:0 0 18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
-.grid{display:grid;gap:16px}
-label{display:block;font-weight:600;font-size:.9rem;margin-bottom:6px}
-.amount{display:flex;align-items:center;border:2px solid var(--line);border-radius:12px;padding:0 12px;background:#fff}
-.amount:focus-within{border-color:var(--brand)}
-.amount span{font-weight:700;color:var(--mute)}
-.amount input{border:0;outline:0;font:inherit;font-size:1.6rem;font-weight:700;width:100%;padding:10px 8px;background:transparent;min-width:0}
-.rate{margin-top:14px;padding:12px;background:var(--soft);border-radius:12px;font-size:.92rem}
-.rate b{font-size:1.1rem}
-.rate .src{color:var(--mute);font-size:.82rem}
-.rate.err{background:var(--warn-bg);color:var(--warn)}
-.override{margin-top:10px}
-.override input,select{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font:inherit;background:#fff;color:var(--ink)}
-.hint{color:var(--mute);font-size:.82rem;margin:4px 0 0}
-.warn{color:var(--warn);background:var(--warn-bg);border-radius:10px;padding:6px 10px;font-size:.85rem;margin:6px 0 0}
-h2{font-size:1.15rem;margin:0 0 10px}
-.ctl{padding:10px 0;border-top:1px solid var(--line)}
-.ctl.first{border-top:0}
-.ctl .row{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
-.ctl .name{font-weight:600;font-size:.92rem}
-.ctl .val{font-variant-numeric:tabular-nums;font-weight:700}
-input[type=range]{width:100%;accent-color:var(--brand)}
-.tag{display:inline-block;font-size:.7rem;font-weight:700;padding:1px 8px;border-radius:999px;vertical-align:middle;margin-left:4px;white-space:nowrap}
-.tag.est{background:var(--warn-bg);color:var(--warn)}
-.tag.sup{background:#eceff1;color:#44525a}
-.tag.pub{background:var(--soft);color:var(--brand)}
-.tag.no{background:var(--bad-bg);color:var(--bad)}
-.tog{display:flex;gap:10px;align-items:flex-start;font-weight:600;font-size:.92rem;margin:0}
-.tog input{margin-top:4px;width:18px;height:18px;accent-color:var(--brand)}
-.results{display:grid;gap:12px}
-.rail{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;position:relative}
-.rail.first{border:2px solid var(--brand)}
-.rail.unr{border-style:dashed;margin-top:8px}
-.rail.na{opacity:.85}
-.rail .head{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:flex-start}
-.rank{flex:none;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:800}
-.first .rank{background:var(--brand)}
-.rail .ttl{flex:1 1 150px;min-width:0}
-.rail h3{margin:0;font-size:1.05rem}
-.rail .sub{color:var(--mute);font-size:.85rem}
-.got{margin-left:auto;text-align:right}
-.got .n{font-size:1.4rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.got .n.bad{color:var(--bad);font-size:1.15rem}
-.got .u{font-size:.78rem;color:var(--mute)}
-.loss{margin:10px 0 6px;font-weight:700;color:var(--bad);font-variant-numeric:tabular-nums}
-.loss.zero{color:var(--brand)}
-.loss small{font-weight:500;color:var(--mute);display:block}
-.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:6px 0 10px}
-.bar i{display:block;height:100%;background:var(--brand)}
-table.bd{width:100%;border-collapse:collapse;font-size:.88rem;font-variant-numeric:tabular-nums}
-table.bd td{padding:3px 0;border-top:1px dashed var(--line);vertical-align:top}
-table.bd td:last-child{text-align:right;white-space:nowrap;padding-left:8px}
-.extra{margin-top:8px;font-size:.86rem;background:var(--warn-bg);color:#5c3d00;border-radius:10px;padding:8px 10px}
-.legal{margin-top:10px;font-size:.86rem;background:var(--warn-bg);color:#5c3d00;border-radius:10px;padding:8px 10px}
-.legal b{font-weight:700}
-.notes{margin:8px 0 0;padding-left:18px;color:var(--mute);font-size:.83rem}
-.ver{margin-top:10px;font-size:.8rem;color:var(--mute);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
-.rule{background:var(--soft);border-radius:12px;padding:10px 12px;font-size:.88rem;margin-top:12px}
-.disc{background:var(--warn-bg);color:#5c3d00;border-radius:12px;padding:12px;font-size:.88rem}
-.pill{display:inline-block;background:#fff;border:1px dashed var(--mute);color:var(--mute);border-radius:999px;padding:6px 14px;font-weight:600;font-size:.9rem}
-ul.log{margin:0;padding-left:18px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{position:relative;margin:0;font-weight:600}
-.chip input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer;left:0;top:0}
-.chip span{display:inline-block;padding:10px 14px;border:2px solid var(--line);border-radius:999px;font-size:.92rem;background:#fff;line-height:1.2}
-.chip input:checked+span{border-color:var(--brand);background:var(--soft);color:var(--brand)}
-.chip input:focus-visible+span{outline:3px solid #7bc6a1;outline-offset:2px}
-.pnote{margin-top:12px;font-size:.86rem;background:var(--warn-bg);color:#5c3d00;border-radius:12px;padding:10px 12px}
-.pcost{margin-top:10px;font-size:.85rem;background:var(--soft);border-radius:12px;padding:10px 12px}
-.pcost h3{margin:0 0 6px;font-size:.92rem}
-.pcost ul{margin:0;padding-left:18px}
-.pcost .ver{margin-top:8px}
-.tag.chk{background:#fff0c2;color:#6b4a00;border:1px solid #e3c15a}
-.tag.okp{background:var(--soft);color:var(--brand)}
-.pn{margin-top:8px;font-size:.84rem;color:#4a3a10;background:#fffaf0;border-left:3px solid #e3c15a;border-radius:6px;padding:6px 10px}
-.pn.okn{background:#f2faf5;border-left-color:var(--brand);color:var(--ink)}
-.year{margin-bottom:12px}
-.year input[type=number]{width:100%;border:2px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:1.1rem;font-weight:700;background:#fff;color:var(--ink)}
-.year input[type=number]:focus{outline:0;border-color:var(--brand)}
-.yhead{margin-top:12px;font-size:1.12rem;font-weight:800;line-height:1.3;color:var(--bad)}
-.yhead small{display:block;font-weight:500;color:var(--mute);font-size:.82rem;margin-top:4px}
-.yact{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
-.btn{border:0;background:var(--brand);color:var(--brand-ink);font:inherit;font-weight:700;padding:10px 18px;border-radius:999px;cursor:pointer;min-height:44px}
-.btn:focus-visible{outline:3px solid #7bc6a1;outline-offset:2px}
-.nolist{margin-top:4px}
-.nolist ul{margin:6px 0 0;padding-left:18px;font-size:.86rem;color:var(--mute)}
-footer{color:var(--mute);font-size:.82rem;padding:18px 0 40px;display:grid;gap:6px}
-[hidden]{display:none!important}
-details.more{margin-top:10px;border-top:1px dashed var(--line);padding-top:6px}
-details.more>summary,details.chg>summary{cursor:pointer;font-weight:700;font-size:.88rem;color:var(--brand);min-height:36px;display:flex;align-items:center}
-details.more[open]>summary{margin-bottom:6px}
-details.chg{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:8px 16px}
-details.chg ul.log{margin:6px 0 10px;font-size:.88rem}
-.tie{background:var(--soft);border-left:3px solid var(--brand);border-radius:8px;padding:8px 12px;font-size:.88rem;font-weight:600}
-.topl{background:var(--soft);color:var(--brand);border:1px solid var(--brand);white-space:normal;display:block;margin:4px 0 0;border-radius:10px;padding:2px 8px;max-width:100%}
-.rail.info{padding:14px 16px}
-.rail.info p{margin:8px 0 0;font-size:.9rem}
-.rail.info .ver{margin-top:8px}
-.betan{background:#fff0c2;color:#4a3a10;border:1px solid #e3c15a;border-radius:12px;padding:10px 12px;font-size:.9rem;font-weight:600}
-.btn.alt{background:#fff;color:var(--brand);border:2px solid var(--brand)}
-.rp{color:var(--mute);font-size:.78rem}
-@media(max-width:859px){
- .grid.main>.side{display:contents}
- #pyCard{order:1}#inCard{order:2}#resSec{order:3}#asCard{order:4}
+/* Tokens only. sans-serif is the generic fallback while Bricolage Grotesque and Figtree load. */
+:root {
+  --bg: #f3f6f4;
+  --surface: #ffffff;
+  --ink: #14211b;
+  --muted: #3e5148;
+  --line: #61786f;
+  --track: #e4ece8;
+  --brand: #0b7a4b;
+  --brand-ink: #ffffff;
+  --soft: #e7f5ee;
+  --amber: #7a4e00;
+  --amber-bg: #fff6e4;
+  --danger: #9e221c;
+  --danger-bg: #fdeceb;
+  --chip: #e7ece9;
+  --shadow: 0 12px 32px rgb(20 33 27 / 0.08);
+  --r-sm: 8px;
+  --r-md: 14px;
+  --pill: 999px;
+  --display: "Bricolage Grotesque", sans-serif;
+  --text: "Figtree", sans-serif;
 }
-@media(min-width:860px){
- .wrap{padding:24px}
- h1{font-size:2rem}
- .grid.main{grid-template-columns:360px 1fr;align-items:start}
- .side{position:sticky;top:16px;display:grid;gap:16px}
- .lower{grid-template-columns:1fr 1fr}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+html, body { max-width: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 16px;
+  line-height: 1.5;
+  padding-bottom: 112px;
 }
+body::before {
+  content: "";
+  display: block;
+  height: 4px;
+  background: var(--brand);
+}
+img { max-width: 100%; }
+a { color: var(--brand); }
+a:hover { text-decoration-thickness: 2px; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus { outline: none; }
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+a, button, input, select, summary, .chip span { scroll-margin-top: 16px; scroll-margin-bottom: 120px; }
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip {
+  position: absolute;
+  left: 12px;
+  top: 8px;
+  transform: translateY(-140%);
+  background: var(--surface);
+  color: var(--brand);
+  border-radius: var(--pill);
+  padding: 10px 14px;
+  min-height: 44px;
+  z-index: 6;
+}
+.skip:focus { transform: translateY(0); }
+.wrap { max-width: 760px; margin: 0 auto; padding: 8px 16px 28px; min-width: 0; }
+.top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; min-height: 56px; min-width: 0; }
+.logo { font-family: var(--display); font-weight: 800; font-size: clamp(1.05rem, 5.2vw, 1.3rem); letter-spacing: -0.03em; min-width: 0; }
+.tools { margin-left: auto; flex: 0 0 auto; }
+.logo span { color: var(--brand); }
+.tools { display: flex; align-items: center; gap: 8px; }
+.verlink {
+  color: var(--muted);
+  font-weight: 700;
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 4px;
+}
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: var(--pill); overflow: visible; background: var(--surface); }
+.lang button {
+  border: 0;
+  background: transparent;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 14px;
+  font-weight: 700;
+  color: var(--muted);
+}
+.lang button:first-child { border-radius: var(--pill) 0 0 var(--pill); }
+.lang button:last-child { border-radius: 0 var(--pill) var(--pill) 0; }
+.lang button:focus-visible { position: relative; z-index: 2; }
+.lang button[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); }
+h1 {
+  font-family: var(--display);
+  font-size: 1.7rem;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  margin: 8px 0 6px;
+  font-weight: 750;
+}
+.lead { color: var(--muted); margin: 0 0 14px; }
+.answer {
+  background: var(--surface);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  min-width: 0;
+  max-width: 100%;
+}
+.answer-grid { min-width: 0; max-width: 100%; }
+.amt-label, .amount, .win, .meta { min-width: 0; max-width: 100%; }
+.amount {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 0 12px;
+  background: var(--surface);
+  min-height: 56px;
+}
+.amount:focus-within { border-color: var(--brand); outline: 3px solid var(--brand); outline-offset: 2px; }
+.amount span { font-family: var(--display); font-weight: 700; color: var(--muted); }
+.amount input {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 8px 0;
+  background: transparent;
+  font-family: var(--display);
+  font-size: 2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+.amount input:focus-visible { outline: none; }
+label { display: block; font-weight: 700; margin: 0 0 6px; }
+.win { margin-top: 16px; container-type: inline-size; padding-right: 4px; }
+.win-kicker, .win-who, .win-sub { overflow-wrap: anywhere; }
+.win-kicker { margin: 0; font-weight: 650; font-size: 0.98rem; }
+.win-who { margin: 2px 0 0; font-family: var(--display); font-weight: 700; font-size: 1.15rem; }
+.win-num {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 2px 0 0;
+  font-family: var(--display);
+  font-weight: 750;
+  font-size: clamp(1.7rem, 12cqi, 4.25rem);
+  line-height: 0.95;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  color: var(--brand);
+  white-space: nowrap;
+}
+.win-num.is-msg {
+  font-family: var(--text);
+  font-size: 1.15rem;
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: 0;
+  color: var(--muted);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.win-sub { margin: 4px 0 0; color: var(--muted); }
+.rate { margin-top: 12px; color: var(--ink); }
+.rate b { font-family: var(--display); font-variant-numeric: tabular-nums; font-size: 1.15rem; }
+.rate .src { color: var(--muted); font-size: 0.85rem; margin-top: 2px; }
+.rate.err { color: var(--danger); background: var(--danger-bg); border-radius: var(--r-sm); padding: 10px 12px; }
+.override { margin-top: 12px; }
+.override input, select, .year input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 8px 12px;
+  background: var(--surface);
+}
+.hint { color: var(--muted); font-size: 0.85rem; margin: 4px 0 0; }
+.warn, .betan, .pnote {
+  color: var(--ink);
+  background: var(--amber-bg);
+  border-radius: var(--r-sm);
+  padding: 8px 10px;
+  margin: 8px 0 0;
+}
+.warn { color: var(--amber); }
+.warn.err, .err { color: var(--danger); background: var(--danger-bg); }
+.pnote, .betan { margin-top: 10px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; max-width: 100%; }
+.chip { position: relative; margin: 0; font-weight: 700; max-width: 100%; }
+.chip input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; left: 0; top: 0; }
+.chip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 8px 14px;
+  border: 2px solid var(--line);
+  border-radius: var(--pill);
+  background: var(--surface);
+  white-space: normal;
+}
+.chip input:checked + span { border-color: var(--brand); background: var(--soft); color: var(--brand); }
+.chip input:focus-visible + span { outline: 3px solid var(--brand); outline-offset: 2px; }
+h2 { font-family: var(--display); font-size: 1.25rem; line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 10px; }
+.block { margin-top: 22px; }
+.tie { background: var(--soft); color: var(--ink); border-radius: var(--r-sm); padding: 10px 12px; font-weight: 650; margin: 0 0 8px; }
+.rrow { border-top: 1px solid var(--line); min-width: 0; max-width: 100%; }
+.rrow-btn {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) minmax(7.25rem, 46%);
+  grid-template-areas: "rank who fig" "bar bar bar";
+  gap: 2px 10px;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 10px 0 8px;
+  min-height: 44px;
+  color: inherit;
+}
+.rank { grid-area: rank; font-family: var(--display); font-weight: 800; font-size: 1.15rem; color: var(--brand); font-variant-numeric: tabular-nums; }
+.who { grid-area: who; min-width: 0; }
+.who-name { font-family: var(--display); font-weight: 700; font-size: 1.02rem; }
+.who-sub, .who .hint { display: block; color: var(--muted); font-size: 0.82rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.fig { grid-area: fig; display: flex; flex-direction: column; align-items: flex-end; text-align: right; width: 100%; min-width: 0; max-width: 100%; }
+.fig-amt { display: block; width: 100%; max-width: 100%; font-family: var(--display); font-weight: 750; font-variant-numeric: tabular-nums; font-size: 1.15rem; letter-spacing: -0.03em; white-space: nowrap; }
+.fig-delta { color: var(--amber); font-variant-numeric: tabular-nums; font-size: 0.78rem; font-weight: 700; max-width: 100%; overflow-wrap: anywhere; }
+.bar { grid-area: bar; height: 8px; background: var(--track); border-radius: var(--pill); overflow: hidden; margin-top: 4px; }
+.bar i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--brand);
+  transform: scaleX(var(--w, 0));
+  transform-origin: left center;
+}
+html.motion .bar i.bar-enter {
+  animation: barIn 500ms ease-out both;
+  animation-delay: calc(var(--i, 0) * 80ms);
+}
+@keyframes barIn {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(var(--w, 0)); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.motion .rrow-btn, html.motion .btn, html.motion summary::after {
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+  html.motion .rrow-btn:hover, html.motion .btn:hover { transform: translateY(-1px); }
+  html.motion .rrow-btn:active, html.motion .btn:active { transform: scale(0.985); }
+}
+.rdetail { padding: 0 0 12px 2.6rem; }
+.tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--pill);
+  vertical-align: middle;
+}
+.tag.est { background: var(--amber-bg); color: var(--amber); }
+.tag.pub, .tag.topl { background: var(--soft); color: var(--brand); }
+.tag.sup, .tag.mute { background: var(--chip); color: var(--muted); }
+.tag.chk { background: var(--amber-bg); color: var(--amber); }
+.loss { margin: 8px 0; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--amber); }
+.loss.zero { color: var(--brand); }
+.loss small { display: block; font-weight: 500; color: var(--muted); }
+.extra, .sits { margin-top: 8px; font-size: 0.88rem; background: var(--amber-bg); color: var(--ink); border-radius: var(--r-sm); padding: 8px 10px; }
+.notes { margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 0.85rem; }
+.ver { margin-top: 8px; font-size: 0.82rem; color: var(--muted); }
+.bd { width: 100%; border-collapse: collapse; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+.bd td { padding: 6px 0; border-top: 1px solid var(--line); vertical-align: top; }
+.bd td:last-child { text-align: right; white-space: nowrap; padding-left: 8px; }
+.sidehead { margin: 16px 0 0; font-size: 0.95rem; color: var(--muted); }
+.year label { margin-top: 4px; }
+.yhead { margin-top: 10px; font-family: var(--display); font-size: 1.15rem; font-weight: 750; line-height: 1.3; color: var(--amber); }
+.yhead small { display: block; font-family: var(--text); font-weight: 500; color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+.yact { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.btn {
+  border: 0;
+  background: var(--brand);
+  color: var(--brand-ink);
+  font-weight: 700;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: var(--pill);
+}
+.btn.alt { background: var(--surface); color: var(--brand); border: 2px solid var(--brand); }
+.rule, .noteblock {
+  background: var(--surface);
+  border-radius: var(--r-md);
+  padding: 12px 14px;
+  margin-top: 12px;
+}
+.noteblock h3 { margin: 0 0 6px; font-size: 1rem; }
+.noteblock p { margin: 0; }
+.plain { margin: 8px 0 0; padding-left: 18px; }
+.assume, .legal, .news {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 0 14px 4px;
+}
+.assume summary, .legal summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-family: var(--display);
+  font-weight: 750;
+  padding: 8px 0;
+  list-style: none;
+}
+.assume summary::-webkit-details-marker, .legal summary::-webkit-details-marker { display: none; }
+summary::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin-left: auto;
+  border-right: 2px solid var(--brand);
+  border-bottom: 2px solid var(--brand);
+  transform: translateY(-2px) rotate(45deg);
+  flex: none;
+}
+details[open] > summary::after { transform: translateY(2px) rotate(-135deg); }
+.ctl { padding: 10px 0; border-top: 1px solid var(--line); }
+.ctl.first { border-top: 0; }
+.ctl .row { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.ctl .name { font-weight: 700; }
+.ctl .val { font-variant-numeric: tabular-nums; font-weight: 700; }
+input[type="range"] { width: 100%; accent-color: var(--brand); min-height: 44px; }
+.tog { display: flex; gap: 10px; align-items: flex-start; font-weight: 700; margin: 0; min-height: 44px; }
+.tog input { margin-top: 4px; width: 20px; height: 20px; accent-color: var(--brand); }
+.news { padding: 14px; }
+.news h2 { margin-bottom: 6px; }
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  background: var(--surface);
+  border: 1px dashed var(--muted);
+  color: var(--muted);
+  border-radius: var(--pill);
+  padding: 6px 14px;
+  font-weight: 700;
+}
+.legal p, .legal div { margin: 0 0 8px; color: var(--muted); font-size: 0.9rem; }
+.legal b { color: var(--ink); }
+footer { color: var(--muted); font-size: 0.9rem; margin-top: 18px; }
+.dock {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  max-width: calc(100% - 24px);
+  padding: 8px 16px;
+  background: var(--brand);
+  color: var(--brand-ink);
+  border-radius: var(--pill);
+}
+.dock[hidden] { display: none; }
+.dock > span { min-width: 0; overflow-wrap: anywhere; }
+.dock b { display: inline-block; max-width: 58%; font-family: var(--display); font-variant-numeric: tabular-nums; font-size: 1.15rem; white-space: nowrap; vertical-align: middle; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@media (min-width: 800px) {
+  h1 { font-size: 2.2rem; }
+  .answer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "label num" "input num" "meta num";
+    gap: 8px 28px;
+    align-items: start;
+  }
+  .amt-label { grid-area: label; }
+  .amount { grid-area: input; }
+  .win { grid-area: num; margin-top: 0; text-align: right; }
+  .win-kicker { text-wrap: balance; }
+  .meta { grid-area: meta; }
+  .fig-amt { font-size: 1.35rem; }
+}
+
 </style>
 <script>
 (function () {
@@ -257,34 +547,33 @@ details.chg ul.log{margin:6px 0 10px;font-size:.88rem}
 </script>
 </head>
 <body>
+<a class="skip" href="#answer" data-p="skip">Saltar al resultado</a>
 <div class="wrap">
  <header class="top">
   <div class="logo">¿Cuánto<span>MeLlega</span>?</div>
-  <div class="lang" role="group" aria-label="Idioma / Language">
-   <button id="bES" aria-pressed="true" type="button">ES</button>
-   <button id="bEN" aria-pressed="false" type="button">EN</button>
+  <div class="tools">
+   <a class="verlink" href="changelog.html">v3.6</a>
+   <div class="lang" role="group" aria-label="Idioma / Language">
+    <button id="bES" aria-pressed="true" type="button">ES</button>
+    <button id="bEN" aria-pressed="false" type="button">EN</button>
+   </div>
   </div>
  </header>
  <h1 data-i="h1">¿Cuántos pesos recibes por un pago en dólares?</h1>
  <p class="lead" data-i="lead">Escribe cuánto te pagan en USD y compara, con tarifas publicadas, cuántos pesos recibes por cada vía.</p>
 
- <div class="grid main">
-  <div class="side">
-   <section class="card" id="pyCard" aria-labelledby="pyT">
-    <h2 id="pyT" data-i="payerT">¿Quién te paga?</h2>
-    <div class="chips" role="radiogroup" aria-labelledby="pyT">
-     <label class="chip"><input type="radio" name="payer" value="direct" checked><span data-i="py_direct">Cliente directo en EE.UU.</span></label>
-     <label class="chip"><input type="radio" name="payer" value="upwork"><span data-i="py_upwork">Upwork (info, beta)</span></label>
-     <label class="chip"><input type="radio" name="payer" value="fiverr"><span data-i="py_fiverr">Fiverr (info, beta)</span></label>
-     <label class="chip"><input type="radio" name="payer" value="deel"><span data-i="py_deel">Deel (info, beta)</span></label>
-     <label class="chip"><input type="radio" name="payer" value="other"><span data-i="py_other">Otro</span></label>
-    </div>
-    <div id="payerNote" class="pnote" hidden></div>
-   </section>
-
-   <section class="card" id="inCard" aria-labelledby="inT">
-    <label for="amt" id="inT" data-i="amtLabel">Monto que te pagan (US$)</label>
-    <div class="amount"><span>US$</span><input id="amt" type="number" inputmode="decimal" min="0" step="any" value="1000"></div>
+ <section class="answer" id="inCard" aria-labelledby="inT">
+  <div class="answer-grid">
+   <label class="amt-label" for="amt" id="inT" data-i="amtLabel">Monto que te pagan (US$)</label>
+   <div class="amount"><span>US$</span><input id="amt" type="number" inputmode="decimal" min="0" step="any" value="1000"></div>
+   <div class="win" id="answer">
+    <p class="win-kicker" id="winKicker"></p>
+    <p class="win-who" id="winWho"></p>
+    <p class="win-num" id="winNum"></p>
+    <p class="win-sub" id="winSub"></p>
+    <p class="sr" id="winLive" aria-live="polite"></p>
+   </div>
+   <div class="meta">
     <div id="rate" class="rate" aria-live="polite"></div>
     <div class="override">
      <label for="ovr" data-i="ovrLabel">Tipo de cambio manual (opcional, MX$ por US$1)</label>
@@ -292,101 +581,106 @@ details.chg ul.log{margin:6px 0 10px;font-size:.88rem}
      <p class="hint" data-i="ovrHint">Si lo llenas, se usa en lugar del tipo de cambio de referencia. Útil si las dos fuentes fallan.</p>
      <p class="warn" id="ovrWarn" role="alert" hidden></p>
     </div>
-   </section>
-
-   <section class="card" id="asCard" aria-labelledby="asT">
-    <h2 id="asT" data-i="assumeT">Ajusta los costos estimados</h2>
-    <div class="ctl first">
-     <label class="tog"><input id="ppAbroad" type="checkbox" checked><span data-i="ppAbroad">PayPal: quien paga está fuera de México (+0.50%)</span></label>
-    </div>
-    <div class="ctl">
-     <div class="row"><span class="name" id="poN"><span data-i="poName">Payoneer: conversión a pesos</span><span class="tag est" data-i="tEst">Estimación</span></span><span class="val" id="poV"></span></div>
-     <input id="poConv" type="range" min="0.5" max="4" step="0.1" value="2.6" aria-labelledby="poN poV">
-     <p class="hint" data-i="poHint">Payoneer publica 1.2% a 4% para transferencias al banco de un destinatario; no confirma que sea lo mismo al retirar a tu propio banco (es una interpretación), por eso el rango empieza en 0.5%. El monto exacto lo ves en tu cuenta antes de confirmar.</p>
-    </div>
-    <div class="ctl">
-     <label for="arqMode" data-i="arqModeL">ARQ: tipo de cuenta</label>
-     <select id="arqMode">
-      <option value="personal" data-i="arqM1">Personal (3 USDs por pago)</option>
-      <option value="bizFree" data-i="arqM2">Business, primeros 12 meses (gratis)</option>
-      <option value="bizAch" data-i="arqM3">Business, después de 12 meses, ACH (3 USDs)</option>
-      <option value="bizWire" data-i="arqM4">Business, después de 12 meses, wire (10 USDs)</option>
-     </select>
-    </div>
-    <div class="ctl">
-     <div class="row"><span class="name" id="arqN"><span data-i="arqName">ARQ: margen de cambio</span><span class="tag est" data-i="tEst">Estimación</span></span><span class="val" id="arqV"></span></div>
-     <input id="arqSp" type="range" min="0" max="1.5" step="0.1" value="0.5" aria-labelledby="arqN arqV">
-     <p class="hint" data-i="arqHint">ARQ dice que su tipo de cambio ya incluye todas sus comisiones y no publica el margen. Ajusta este estimado.</p>
-    </div>
-    <div class="ctl">
-     <div class="row"><span class="name" id="bbvaN"><span data-i="bbvaName">BBVA: margen de cambio</span><span class="tag est" data-i="tEst">Estimación</span></span><span class="val" id="bbvaV"></span></div>
-     <input id="bbvaSp" type="range" min="0" max="4" step="0.1" value="1.5" aria-labelledby="bbvaN bbvaV">
-     <p class="hint" data-i="bbvaHint">El banco aplica su propio tipo de cambio; este margen es un estimado.</p>
-    </div>
-    <div class="ctl" id="wiseCtl1">
-     <label for="wiseFund" data-i="wiseFundL">Wise: cómo paga quien te envía (costo por US$1,000; verificado 3 nov 2026, puede cambiar)</label>
-     <select id="wiseFund">
-      <option value="5.71" data-i="wf1">Saldo en Wise (US$5.71)</option>
-      <option value="7.67" data-i="wf2" selected>Débito directo (US$7.67)</option>
-      <option value="12.07" data-i="wf3">Transferencia bancaria (US$12.07)</option>
-      <option value="18.20" data-i="wf4">Tarjeta de débito (US$18.20)</option>
-      <option value="66.99" data-i="wf5">Tarjeta de crédito (US$66.99)</option>
-     </select>
-    </div>
-    <div class="ctl" id="wiseCtl2">
-     <label class="tog"><input id="wiseAbsorb" type="checkbox"><span data-i="wiseAbsorb">Wise: quien paga cubre la comisión por separado (recibes el monto completo)</span></label>
-    </div>
-   </section>
-  </div>
-
-  <section id="resSec" aria-labelledby="resT">
-   <h2 id="resT" data-i="resT">Comparación estimada: de mayor a menor resultado estimado</h2>
-   <div class="card year" id="yearCard">
-    <label for="nyr" data-i="yrLabel">¿Cuántos pagos así recibes al año?</label>
-    <input id="nyr" type="number" inputmode="numeric" min="1" max="1000" step="1" value="12" aria-describedby="nyrWarn">
-    <p class="warn" id="nyrWarn" role="alert" hidden></p>
-    <div id="yearHead" class="yhead" aria-live="polite"></div>
-    <div class="yact"><button type="button" id="shareBtn" class="btn" data-i="share" hidden>Compartir</button><span id="shareMsg" class="hint" role="status"></span></div>
    </div>
-   <div id="results" class="results"></div>
-   <div class="rule" data-i="ruleT">Esta página no tiene enlaces de afiliado. Si algún día los tiene, no cambiarán el orden. El orden es matemática sobre las tarifas publicadas y estimaciones ajustables.</div>
-   <p class="hint" style="margin-top:12px" data-i="g66">Global66 no está incluida: su cuenta en USD (ACH/Wire) aparece en su centro de ayuda solo para Chile, Colombia, Ecuador, Argentina y Perú, no para México. Dónde vive tu dinero en Global66: no lo verificamos para México.</p>
-  </section>
- </div>
-
- <div style="margin-top:16px">
-  <section class="card">
-   <h2 data-i="nlT">Avisos de cambios en comisiones</h2>
-   <p style="margin:0 0 10px" data-i="nlP">Un correo corto cuando cambie alguna comisión o regla de estas vías.</p>
-   <span class="pill" data-i="nlSoon">Próximamente</span>
-  </section>
- </div>
-
- <section class="disc" style="margin-top:16px" role="note">
-  <b data-i="discB">Aviso:</b> <span data-i="discT">Esto es una simulación con tarifas publicadas y supuestos tuyos, no una cotización garantizada. Las tarifas y márgenes reales pueden diferir; verifica siempre en el sitio oficial antes de elegir. No es asesoría financiera ni recomendación.</span>
+  </div>
  </section>
 
- <footer>
+ <section class="block" id="pyCard" aria-labelledby="pyT">
+  <h2 id="pyT" data-i="payerT">¿Quién te paga?</h2>
+  <div class="chips" role="radiogroup" aria-labelledby="pyT">
+   <label class="chip"><input type="radio" name="payer" value="direct" checked><span data-i="py_direct">Cliente directo en EE.UU.</span></label>
+   <label class="chip"><input type="radio" name="payer" value="upwork"><span data-i="py_upwork">Upwork (info, beta)</span></label>
+   <label class="chip"><input type="radio" name="payer" value="fiverr"><span data-i="py_fiverr">Fiverr (info, beta)</span></label>
+   <label class="chip"><input type="radio" name="payer" value="deel"><span data-i="py_deel">Deel (info, beta)</span></label>
+   <label class="chip"><input type="radio" name="payer" value="other"><span data-i="py_other">Otro</span></label>
+  </div>
+  <div id="payerNote" class="pnote" hidden></div>
+ </section>
+
+ <section class="block" id="resSec" aria-labelledby="resT">
+  <h2 id="resT" data-i="resT">Comparación estimada: de mayor a menor resultado estimado</h2>
+  <div id="results"></div>
+  <div class="year" id="yearCard">
+   <label for="nyr" data-i="yrLabel">¿Cuántos pagos así recibes al año?</label>
+   <input id="nyr" type="number" inputmode="numeric" min="1" max="1000" step="1" value="12" aria-describedby="nyrWarn">
+   <p class="warn" id="nyrWarn" role="alert" hidden></p>
+   <div id="yearHead" class="yhead" aria-live="polite"></div>
+   <div class="yact"><button type="button" id="shareBtn" class="btn" data-i="share" hidden>Compartir</button><span id="shareMsg" class="hint" role="status"></span></div>
+  </div>
+  <p class="rule" data-i="ruleT">Esta página no tiene enlaces de afiliado. Si algún día los tiene, no cambiarán el orden. El orden es matemática sobre las tarifas publicadas y estimaciones ajustables.</p>
+  <p class="hint" data-i="g66">Global66 no está incluida: su cuenta en USD (ACH/Wire) aparece en su centro de ayuda solo para Chile, Colombia, Ecuador, Argentina y Perú, no para México. Dónde vive tu dinero en Global66: no lo verificamos para México.</p>
+ </section>
+
+ <details class="assume block" id="asCard">
+  <summary id="asT" data-i="assumeT">Ajusta los costos estimados</summary>
+  <div class="ctl first">
+   <label class="tog"><input id="ppAbroad" type="checkbox" checked><span data-i="ppAbroad">PayPal: quien paga está fuera de México (+0.50%)</span></label>
+  </div>
+  <div class="ctl">
+   <div class="row"><span class="name" id="poN"><span data-i="poName">Payoneer: conversión a pesos</span><span class="tag est" data-i="tEst">Estimación</span></span><span class="val" id="poV"></span></div>
+   <input id="poConv" type="range" min="0.5" max="4" step="0.1" value="2.6" aria-labelledby="poN poV">
+   <p class="hint" data-i="poHint">Payoneer publica 1.2% a 4% para transferencias al banco de un destinatario; no confirma que sea lo mismo al retirar a tu propio banco (es una interpretación), por eso el rango empieza en 0.5%. El monto exacto lo ves en tu cuenta antes de confirmar.</p>
+  </div>
+  <div class="ctl">
+   <label for="arqMode" data-i="arqModeL">ARQ: tipo de cuenta</label>
+   <select id="arqMode">
+    <option value="personal" data-i="arqM1">Personal (3 USDs por pago)</option>
+    <option value="bizFree" data-i="arqM2">Business, primeros 12 meses (gratis)</option>
+    <option value="bizAch" data-i="arqM3">Business, después de 12 meses, ACH (3 USDs)</option>
+    <option value="bizWire" data-i="arqM4">Business, después de 12 meses, wire (10 USDs)</option>
+   </select>
+  </div>
+  <div class="ctl">
+   <div class="row"><span class="name" id="arqN"><span data-i="arqName">ARQ: margen de cambio</span><span class="tag est" data-i="tEst">Estimación</span></span><span class="val" id="arqV"></span></div>
+   <input id="arqSp" type="range" min="0" max="1.5" step="0.1" value="0.5" aria-labelledby="arqN arqV">
+   <p class="hint" data-i="arqHint">ARQ dice que su tipo de cambio ya incluye todas sus comisiones y no publica el margen. Ajusta este estimado.</p>
+  </div>
+  <div class="ctl">
+   <div class="row"><span class="name" id="bbvaN"><span data-i="bbvaName">BBVA: margen de cambio</span><span class="tag est" data-i="tEst">Estimación</span></span><span class="val" id="bbvaV"></span></div>
+   <input id="bbvaSp" type="range" min="0" max="4" step="0.1" value="1.5" aria-labelledby="bbvaN bbvaV">
+   <p class="hint" data-i="bbvaHint">El banco aplica su propio tipo de cambio; este margen es un estimado.</p>
+  </div>
+  <div class="ctl" id="wiseCtl1">
+   <label for="wiseFund" data-i="wiseFundL">Wise: cómo paga quien te envía (costo por US$1,000; verificado 3 nov 2026, puede cambiar)</label>
+   <select id="wiseFund">
+    <option value="5.71" data-i="wf1">Saldo en Wise (US$5.71)</option>
+    <option value="7.67" data-i="wf2" selected>Débito directo (US$7.67)</option>
+    <option value="12.07" data-i="wf3">Transferencia bancaria (US$12.07)</option>
+    <option value="18.20" data-i="wf4">Tarjeta de débito (US$18.20)</option>
+    <option value="66.99" data-i="wf5">Tarjeta de crédito (US$66.99)</option>
+   </select>
+  </div>
+  <div class="ctl" id="wiseCtl2">
+   <label class="tog"><input id="wiseAbsorb" type="checkbox"><span data-i="wiseAbsorb">Wise: quien paga cubre la comisión por separado (recibes el monto completo)</span></label>
+  </div>
+ </details>
+
+ <section class="news block">
+  <h2 data-i="nlT">Avisos de cambios en comisiones</h2>
+  <p data-i="nlP">Un correo corto cuando cambie alguna comisión o regla de estas vías.</p>
+  <span class="pill" data-i="nlSoon">Próximamente</span>
+ </section>
+
+ <details class="legal block">
+  <summary data-p="legalSum">Avisos legales y privacidad</summary>
+  <p><b data-i="discB">Aviso:</b> <span data-i="discT">Esto es una simulación con tarifas publicadas y supuestos tuyos, no una cotización garantizada. Las tarifas y márgenes reales pueden diferir; verifica siempre en el sitio oficial antes de elegir. No es asesoría financiera ni recomendación.</span></p>
   <div data-i="f1">Sitio independiente. No tiene afiliación con PayPal, Payoneer, ARQ, BBVA, Wise, Upwork, Fiverr ni Deel; sus marcas pertenecen a sus dueños.</div>
   <div data-i="f2">No somos entidad financiera ni movemos dinero. Solo comparamos.</div>
   <div data-i="f3">No incluye impuestos sobre tus ingresos (ISR). El IVA de las comisiones puede ser acreditable si facturas; consulta a tu contador.</div>
   <div data-i="f4">Los resultados son una simulación, no una cotización garantizada.</div>
   <div id="f6">Analítica sin cookies y con panel privado: la dirección IP se procesa de forma temporal y se guardan datos técnicos agregados, no lo que escribes en la calculadora (<a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad de GoatCounter</a>). El tipo de cambio se consulta en frankfurter.dev y, si falla, open.er-api.com.</div>
-  <div><span data-i="f5">Hecho por un desarrollador independiente</span> · <a id="reportLink" href="https://github.com/cuantomellega/cuantomellega.github.io/issues" target="_blank" rel="noopener" data-i="reportL">Reportar un error o una tarifa</a> <span class="rp" data-i="reportP">(los reportes en GitHub son públicos: no incluyas datos personales)</span></div>
- </footer>
-
- <details class="chg">
-  <summary data-i="logT">Historial de cambios</summary>
-  <ul class="log">
-   <li data-i="log7">v3.4, 3 nov 2026: Wise sale del ranking y va aparte («Si tu cliente paga con Wise»); textos en el HTML para buscadores y sin JavaScript; nota de reservas de USDs según ARQ; rango de Payoneer desde 0.5%; línea de privacidad; vistas de Upwork, Fiverr y Deel simplificadas.</li>
-   <li data-i="log6">v3.3, 3 nov 2026: el costo al año ya no compara contra Wise (solo aplica si tu cliente lo usa); nota de Wise para residentes en México corregida; «dónde vive tu dinero» en cada vía; Wise marcado como no disponible con Upwork; etiqueta «pierdes más de 20%»; aviso de que no es asesoría financiera.</li>
-   <li data-i="log5">v3.2, 3 nov 2026: Upwork, Fiverr y Deel pasan a una vista informativa (beta) sin ranking ni cifras en pesos; «Otro» ya no calcula costo al año; ARQ corregido a USDs; el tipo de cambio de cada resultado dice qué fuente se usó; todos los totales marcados como estimados; empate técnico señalado; canal para reportar errores.</li>
-   <li data-i="log4">v3.1, 3 nov 2026: tabla de Wise actualizada (verificada 3 nov 2026, puede cambiar); titular anual más cauto; PayPal marcado como estimación.</li>
-   <li data-i="log3">v3, 3 nov 2026: primero eliges quién te paga (cliente directo, Upwork, Fiverr, Deel u otro) y las vías se filtran o se marcan; costo al año con botón de compartir; tipo de cambio de referencia (BCE, diario) con el mismo nombre en toda la página.</li>
-   <li data-i="log2">v2, 28 oct 2026: ARQ personal y Business, Wise según forma de pago, etiquetas por línea, topes en cero y validaciones.</li>
-   <li data-i="log1">v1, 28 oct 2026: PayPal MX, Payoneer, ARQ, BBVA México y Wise; tipo de cambio de referencia (BCE, diario) con respaldo y campo manual.</li>
-  </ul>
+  <div id="f7">Las fuentes se cargan desde Google Fonts. Esa solicitud envía a Google datos técnicos, como la dirección IP y el agente de usuario (<a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener noreferrer">Privacidad de Google Fonts</a>).</div>
+  <div><span data-i="f5">Hecho por un desarrollador independiente</span></div>
  </details>
+
+ <footer>
+  <div><a id="reportLink" href="https://github.com/cuantomellega/cuantomellega.github.io/issues" target="_blank" rel="noopener" data-i="reportL">Reportar un error o una tarifa</a> <span class="hint" data-i="reportP">(los reportes en GitHub son públicos: no incluyas datos personales)</span></div>
+  <div><a href="changelog.html">v3.6</a></div>
+ </footer>
+</div>
+<div id="dock" class="dock" hidden>
+ <span id="dockName"></span>
+ <b id="dockAmt"></b>
 </div>
 
 <script>
@@ -813,50 +1107,6 @@ function renderPrivacy() {
   el.appendChild(a);
   el.appendChild(document.createTextNode(parts[1]));
 }
-function renderStatic() {
-  const t = T[lang];
-  document.documentElement.lang = lang;
-  document.title = t.title;
-  document.querySelectorAll('[data-i]').forEach(el => { el.textContent = t[el.dataset.i]; });
-  renderPrivacy();
-  $('bES').setAttribute('aria-pressed', lang === 'es');
-  $('bEN').setAttribute('aria-pressed', lang === 'en');
-  $('poV').textContent = pf(parseFloat($('poConv').value));
-  $('arqV').textContent = pf(parseFloat($('arqSp').value));
-  $('bbvaV').textContent = pf(parseFloat($('bbvaSp').value));
-  const w = $('ovrWarn'), m = manualRate();
-  w.hidden = !(m.state === 'range' || m.state === 'bad');
-  w.textContent = m.state === 'range' ? t.ovrRange : (m.state === 'bad' ? t.ovrBad : '');
-  const wiseOn = !isPlat(payer());
-  $('wiseCtl1').hidden = !wiseOn; $('wiseCtl2').hidden = !wiseOn;
-  const y = yearsN(), yw = $('nyrWarn');
-  yw.hidden = y.state === 'ok'; yw.textContent = y.state === 'bad' ? t.yrBad : (y.state === 'frac' ? t.yrFrac : (y.state === 'max' ? t.yrMax : ''));
-}
-
-function renderPayer() {
-  const t = T[lang], py = payer(), note = $('payerNote'), plat = isPlat(py);
-  ['inCard', 'asCard', 'yearCard'].forEach(id => { $(id).hidden = plat; });
-  if (py === 'direct') { note.hidden = true; return; }
-  note.hidden = false;
-  note.textContent = plat ? t.pnPlat : t.pnOther;
-  note.className = plat ? 'betan' : 'pnote';
-  note.style.marginTop = '12px';
-}
-const rateName = r => T[lang][{ ecb: 'rn_ecb', er: 'rn_er', manual: 'rn_manual' }[r.source]];
-const openMap = {};
-const wide = () => window.matchMedia && window.matchMedia('(min-width:860px)').matches;
-const linkList = ls => ls.map(l => '<a href="' + l[0] + '" target="_blank" rel="noopener">' + esc(l[1]) + ' ↗</a>').join(' · ');
-const ORDER = ['paypal', 'payoneer', 'arq', 'bbva', 'wise'];
-function renderInfo(py) {
-  const t = T[lang], P = PLAT[py], res = $('results');
-  shareText = ''; $('resT').textContent = fill(t.infoT, { P: P.name });
-  const no = ORDER.filter(id => statusOf(py, id) === 'no');
-  const cost = '<div class="pcost"><p style="margin:0">' + esc(t.platNote[py]) + '</p><div class="ver"><span class="tag pub">' + esc(t.tPub) + '</span><span>' + esc(t.costDate) + ' ' + esc(fmtDate(PLAT_VERIFIED)) + ': <a href="' + P.fees + '" target="_blank" rel="noopener">' + esc(fill(t.platLinkT, { P: P.name })) + ' ↗</a></span></div></div>';
-  const nol = no.length ? '<div class="card nolist"><h3 style="margin:0;font-size:1rem">' + esc(t.noT) + '</h3><p class="hint">' + esc(fill(t.noLead, { P: P.name })) + '</p><ul>' +
-    no.map(id => '<li><b>' + esc(rname(id)) + '</b><span class="tag no">' + esc(t.notListedTag) + '</span>: ' + esc(((PAYER_NO[py] || {})[lang]) || '') + ' ' + linkList((PAYER_NO[py] || {}).links || []) + '</li>').join('') + '</ul></div>' : '';
-  res.innerHTML = '<div class="card info"><p style="margin:0">' + esc(fill(t.infoLead, { P: P.name })) + '</p><div class="yact"><button type="button" class="btn alt" id="goDirect">' + esc(t.goDirect) + '</button></div></div>' + cost + nol;
-}
-
 function renderRate() {
   const t = T[lang], box = $('rate'), r = effectiveRate();
   box.className = 'rate';
@@ -876,57 +1126,6 @@ function renderRate() {
   }
 }
 
-function renderResults() {
-  const t = T[lang], res = $('results'), r = effectiveRate(), A = parseFloat($('amt').value), py = payer();
-  if (isPlat(py)) { $('yearHead').innerHTML = ''; $('shareBtn').hidden = true; renderInfo(py); return; }
-  $('resT').textContent = t.resT;
-  if (!r || !(A > 0)) { $('yearHead').innerHTML = ''; $('shareBtn').hidden = true; shareText = ''; res.innerHTML = '<div class="card">' + esc(rateState.status === 'loading' && !r ? t.loading : t.need) + '</div>'; return; }
-  const rows = calcRails(A, r.value, options());
-  const ref = A * r.value, rn = rateName(r);
-  renderYear(rows, py, A, r);
-  const tie = tied(rows) ? '<div class="tie" role="note">' + esc(t.tieN) + '</div>' : '';
-  const rk = ranked(rows), wr = rows.filter(x => UNRANKED.indexOf(x.id) >= 0);
-  res.innerHTML = tie + rk.concat(wr).map((x, i) => {
-    const unr = UNRANKED.indexOf(x.id) >= 0;
-    const meta = RAILS[x.id];
-    const notes = t[NOTES[x.id]].map(n => '<li>' + esc(n) + '</li>').join('');
-    const bd = x.items.map(it => '<tr><td>' + esc(t[it.k]) + '<span class="tag ' + it.t + '">' + esc(t[{ pub: 'tPub', est: 'tEst', sup: 'tSup' }[it.t]]) + '</span></td><td>−' + mx(it.mxn) + '</td></tr>').join('');
-    const links = linkList(meta.links);
-    const pct = x.na ? 0 : Math.max(0, Math.min(100, x.pesos / ref * 100));
-    const first = !unr && i === 0 && !x.na;
-    const topTag = first ? '<span class="tag topl">' + esc(t.topLbl) + '</span>' : '';
-    const badTag = !x.na && x.lossPct >= 20 ? '<span class="tag no">' + esc(t.bad) + '</span>' : '';
-    const ppTag = x.id === 'paypal' ? '<span class="tag est">' + esc(t.ppEstTag) + '</span>' : '';
-    const ppNote = x.id === 'paypal' && !x.na ? '<div class="extra">' + esc(t.ppEstNote) + '</div>' : '';
-    const wiseTag = x.id === 'wise' ? '<span class="tag est">' + esc(t.wiseNear) + '</span>' : '';
-    let lossHtml;
-    if (x.na) lossHtml = '';
-    else if (x.loss < 0.005) lossHtml = '<div class="loss zero">' + esc(fill(t.none, { R: rn })) + '</div>';
-    else lossHtml = '<div class="loss">−' + mx(x.loss) + ' · −' + pf(x.lossPct) + ' <small>' + esc(fill(t.loss, { R: rn })) + '</small></div>';
-    const got = x.na
-      ? '<div class="n bad">' + esc(t.naT) + '</div><div class="u">' + esc(t.naU) + '</div>'
-      : '<div class="n">' + mx(x.pesos) + '</div><div class="u">' + esc(t.recv) + '</div>';
-    const extra = x.extra ? '<div class="extra">' + esc(t.wiseExtra) + ' <b>' + us(x.extra.usd) + ' (' + mx(x.extra.mxn) + ')</b></div>' : '';
-    const wiseFar = x.id === 'wise' && (A < RULES.wise.nearMin || A > RULES.wise.nearMax) ? '<div class="extra">' + esc(t.wiseFar) + '</div>' : '';
-    const verTag = py === 'other' ? '<span class="tag chk">' + esc(t.verifyOther) + '</span>' : '';
-    const legal = '<div class="legal"><b>' + esc(t.sitsT) + '</b> ' + esc(t.sits[x.id]) + (x.id === 'arq' ? ' ' + esc(t.arqLegal) + ' ' + esc(t.arqRes) + ' ' + linkList([[ARQ_TR, 'arqfinance.com/es-MX/transparency']]) : '') + '</div>';
-    const verTxt = meta.ver ? (meta.chg ? fill(t.pubChg, { D: fmtDate(meta.ver) }) : t.pubOn + ' ' + fmtDate(meta.ver)) : t.pubOn + ' ' + fmtDate(VERIFIED);
-    const isOpen = openMap[x.id] != null ? openMap[x.id] : wide();
-    return '<article class="rail' + (first ? ' first' : '') + (unr ? ' unr' : '') + (x.na ? ' na' : '') + '">' +
-      '<div class="head">' + (unr ? '' : '<div class="rank">' + (i + 1) + '</div>') +
-      '<div class="ttl"><h3>' + esc(unr ? t.wiseCardT : rname(x.id)) + topTag + verTag + badTag + ppTag + wiseTag + '</h3><div class="sub">' + esc(meta.sub[lang]) + '</div></div>' +
-      '<div class="got">' + got + '</div></div>' +
-      (unr ? '<p class="hint" style="margin:6px 0 0">' + esc(t.wiseCardN) + '</p>' : '') + lossHtml + (x.na ? '' : '<div class="bar" aria-hidden="true"><i style="width:' + pct.toFixed(1) + '%"></i></div>') +
-      extra + ppNote + wiseFar + legal +
-      '<details class="more" data-id="' + x.id + '"' + (isOpen ? ' open' : '') + '><summary>' + esc(t.moreT) + '</summary>' +
-      (bd ? '<table class="bd">' + bd + '</table>' : '') +
-      '<ul class="notes">' + notes + '</ul>' +
-      '<div class="ver"><span class="tag pub">' + esc(t.tPub) + '</span><span>' + esc(verTxt) + '. ' + esc(t.source) + ': ' + links + '</span></div></details>' +
-      '</article>';
-  }).join('');
-}
-
-let shareText = '';
 function renderYear(all, py, A, r) {
   const t = T[lang], head = $('yearHead'), btn = $('shareBtn'), y = yearsN();
   shareText = ''; btn.hidden = true; $('shareMsg').textContent = '';
@@ -958,22 +1157,412 @@ async function share() {
     } catch (e2) { msg.textContent = t.shareFail; }
   }
 }
+const PRES = {
+  es: {
+    skip: 'Saltar al resultado',
+    legalSum: 'Avisos legales y privacidad',
+    deltaLbl: 'frente al mayor resultado estimado',
+    fonts: 'Las fuentes se cargan desde Google Fonts. Esa solicitud envía a Google datos técnicos, como la dirección IP y el agente de usuario ({link}).',
+    fontsLink: 'Privacidad de Google Fonts'
+  },
+  en: {
+    skip: 'Skip to the result',
+    legalSum: 'Legal notices and privacy',
+    deltaLbl: 'vs. the highest estimated result',
+    fonts: 'Fonts load from Google Fonts. That request sends Google technical data, such as the IP address and the user agent ({link}).',
+    fontsLink: 'Google Fonts privacy'
+  }
+};
+const rateName = r => T[lang][{ ecb: 'rn_ecb', er: 'rn_er', manual: 'rn_manual' }[r.source]];
+const linkList = ls => ls.map(l => '<a href="' + l[0] + '" target="_blank" rel="noopener">' + esc(l[1]) + ' ↗</a>').join(' · ');
+const ORDER = ['paypal', 'payoneer', 'arq', 'bbva', 'wise'];
+const openMap = {};
+const shown = {};
+const gens = {};
+const barsSeen = {};
+let inFrame = false;
+function own(el) {
+  const key = (el && (el.dataset.key || el.id)) || 'x';
+  const gen = (gens[key] || 0) + 1;
+  gens[key] = gen;
+  return { key: key, gen: gen };
+}
+function live(el, token) {
+  return !!(el && el.isConnected && token && gens[token.key] === token.gen);
+}
+let shareText = '';
 
-function renderAll() { renderStatic(); renderPayer(); renderRate(); renderResults(); }
+function reduceMotion() {
+  return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+}
+function bootMotion() {
+  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const apply = () => document.documentElement.classList.toggle('motion', !mq.matches);
+  apply();
+  if (mq.addEventListener) mq.addEventListener('change', () => { apply(); renderAll(); });
+}
+function fitMax(el) {
+  if (!el) return 26;
+  if (el.id === 'winNum') return 72;
+  if (el.id === 'dockAmt') return 22;
+  if (el.id === 'amt') return 32;
+  return 26;
+}
+function spills(el) {
+  if (!el || !String(el.textContent || '').trim()) return false;
+  if (el.clientWidth < 8) return false;
+  return el.scrollWidth - el.clientWidth > 0.5;
+}
+function fitText(el, maxPx) {
+  if (inFrame) window.__cmlFitDuringFrame = (window.__cmlFitDuringFrame || 0) + 1;
+  if (!el) return;
+  if (el.classList.contains('is-msg')) { el.style.fontSize = ''; return; }
+  const cap = maxPx || fitMax(el);
+  el.style.fontSize = cap + 'px';
+  if (!spills(el)) return;
+  let lo = 11, hi = cap;
+  for (let i = 0; i < 14; i++) {
+    const mid = (lo + hi) / 2;
+    el.style.fontSize = mid + 'px';
+    if (spills(el)) hi = mid; else lo = mid;
+  }
+  el.style.fontSize = Math.max(11, lo - 1) + 'px';
+}
+function fitInput(el) {
+  if (!el) return;
+  let lo = 16, hi = 32;
+  el.style.fontSize = hi + 'px';
+  if (el.scrollWidth <= el.clientWidth + 1) return;
+  for (let i = 0; i < 8; i++) {
+    const mid = (lo + hi) / 2;
+    el.style.fontSize = mid + 'px';
+    if (el.scrollWidth > el.clientWidth + 1) hi = mid; else lo = mid;
+  }
+  el.style.fontSize = Math.max(16, lo) + 'px';
+}
+function fitSamples(el) {
+  try { return JSON.parse(el.dataset.fitSamples || '[]'); } catch (e) { return []; }
+}
+function refit(el, maxPx) {
+  if (!el) return;
+  if (el.classList.contains('is-msg')) { el.style.fontSize = ''; return; }
+  const samples = fitSamples(el).filter(Boolean);
+  if (!samples.length) { fitText(el, maxPx); return; }
+  const shown = el.textContent;
+  lockSize(el, samples, maxPx);
+  el.textContent = shown;
+}
+function fitAmounts() {
+  refit($('winNum'), 72);
+  document.querySelectorAll('.fig-amt').forEach(el => refit(el, 26));
+  const dock = $('dock'), dockAmt = $('dockAmt');
+  if (dock && !dock.hidden && dockAmt) refit(dockAmt, 22);
+  fitInput($('amt'));
+}
+function lockSize(el, texts, maxPx) {
+  const cap = maxPx || fitMax(el);
+  const list = texts.filter(Boolean);
+  let best = list[0] || '', bestW = -1;
+  list.forEach(t => {
+    el.textContent = t;
+    el.style.fontSize = cap + 'px';
+    if (el.scrollWidth >= bestW) { bestW = el.scrollWidth; best = t; }
+  });
+  el.textContent = best;
+  fitText(el, cap);
+}
+function countUp(el, value, format) {
+  if (!el) return;
+  const exact = format(value);
+  const token = own(el);
+  el.dataset.exact = exact;
+  el.dataset.sentinel = exact;
+  const prev = Object.prototype.hasOwnProperty.call(shown, token.key) ? shown[token.key] : null;
+  shown[token.key] = value;
+  const from = prev == null ? 0 : prev;
+  const midVal = from + (value - from) * 0.5;
+  const samples = [format(from), isFinite(midVal) ? format(midVal) : '', exact].filter(Boolean);
+  el.dataset.fitSamples = JSON.stringify(samples);
+  if (reduceMotion() || prev === value || !isFinite(value)) {
+    el.textContent = exact;
+    fitText(el);
+    return;
+  }
+  lockSize(el, samples, fitMax(el));
+  el.textContent = format(from);
+  const t0 = performance.now();
+  const step = (now) => {
+    if (!live(el, token) || el.dataset.sentinel !== exact) return;
+    if (reduceMotion()) { el.textContent = exact; return; }
+    const p = Math.max(0, Math.min(1, (now - t0) / 400));
+    const e = 1 - Math.pow(1 - p, 3);
+    inFrame = true;
+    try { el.textContent = p >= 1 ? exact : format(from + (value - from) * e); }
+    finally { inFrame = false; }
+    if (p < 1 && live(el, token) && el.dataset.sentinel === exact && !reduceMotion()) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+function capturePos() {
+  const map = {};
+  document.querySelectorAll('#results [data-id]').forEach(el => { map[el.dataset.id] = el.getBoundingClientRect().top; });
+  return map;
+}
+function flipFrom(before) {
+  if (reduceMotion()) return;
+  document.querySelectorAll('#results [data-id]').forEach(el => {
+    if (before[el.dataset.id] == null) return;
+    const dy = before[el.dataset.id] - el.getBoundingClientRect().top;
+    if (Math.abs(dy) < 1) return;
+    el.style.transition = 'none';
+    el.style.transform = 'translateY(' + dy + 'px)';
+    requestAnimationFrame(() => {
+      el.style.transition = 'transform 250ms ease-out';
+      el.style.transform = 'translateY(0)';
+      const done = () => { el.style.transition = ''; el.style.transform = ''; };
+      el.addEventListener('transitionend', done, { once: true });
+    });
+  });
+}
+function showWin(opts) {
+  const num = $('winNum'), dock = $('dock');
+  if (!opts || opts.mode === 'empty') {
+    own(num);
+    const message = (opts && opts.message) || '';
+    num.textContent = message;
+    num.dataset.exact = message;
+    num.dataset.sentinel = 'empty';
+    num.dataset.fitSamples = '[]';
+    num.classList.add('is-msg');
+    num.style.fontSize = '';
+    $('winKicker').textContent = '';
+    $('winWho').textContent = '';
+    $('winSub').textContent = '';
+    $('winLive').textContent = message;
+    dock.dataset.empty = '1';
+    dock.hidden = true;
+    if ($('dockKicker')) $('dockKicker').textContent = '';
+    return;
+  }
+  num.classList.remove('is-msg');
+  $('winKicker').textContent = opts.kicker || '';
+  $('winWho').textContent = opts.who || '';
+  $('winSub').textContent = opts.sub || '';
+  countUp(num, opts.value, opts.format);
+  $('winLive').textContent = (opts.kicker ? opts.kicker + '. ' : '') + (opts.who || '') + ' ' + opts.format(opts.value);
+  $('dockName').textContent = opts.who || '';
+  $('dockAmt').textContent = opts.format(opts.value);
+  num.dataset.sentinel = opts.format(opts.value);
+  dock.dataset.empty = $('inCard').hidden ? '1' : '0';
+  if (dock.dataset.empty === '1') dock.hidden = true;
+}
+function syncDock() {
+  const dock = $('dock'), win = $('winNum');
+  if (!dock || dock.dataset.empty === '1' || $('inCard').hidden) { if (dock) dock.hidden = true; return; }
+  const r = win.getBoundingClientRect();
+  const hide = r.bottom > 8 && r.top < window.innerHeight - 8;
+  const wasHidden = dock.hidden;
+  dock.hidden = hide;
+  if (wasHidden && !hide) refit($('dockAmt'), 22);
+}
+
+function renderFonts() {
+  const el = $('f7');
+  if (!el) return;
+  const t = PRES[lang];
+  const parts = String(t.fonts || '').split('{link}');
+  el.textContent = '';
+  el.appendChild(document.createTextNode(parts[0] || ''));
+  if (parts.length === 2) {
+    const a = document.createElement('a');
+    a.href = 'https://developers.google.com/fonts/faq/privacy';
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.textContent = t.fontsLink || '';
+    el.appendChild(a);
+    el.appendChild(document.createTextNode(parts[1] || ''));
+  }
+}
+function renderStatic() {
+  const t = T[lang];
+  document.documentElement.lang = lang;
+  document.title = t.title;
+  document.querySelectorAll('[data-i]').forEach(el => { el.textContent = t[el.dataset.i]; });
+  document.querySelectorAll('[data-p]').forEach(el => { el.textContent = PRES[lang][el.dataset.p] || ''; });
+  renderPrivacy();
+  renderFonts();
+  $('bES').setAttribute('aria-pressed', lang === 'es');
+  $('bEN').setAttribute('aria-pressed', lang === 'en');
+  $('poV').textContent = pf(parseFloat($('poConv').value));
+  $('arqV').textContent = pf(parseFloat($('arqSp').value));
+  $('bbvaV').textContent = pf(parseFloat($('bbvaSp').value));
+  const w = $('ovrWarn'), m = manualRate();
+  w.hidden = !(m.state === 'range' || m.state === 'bad');
+  w.classList.toggle('err', m.state === 'bad');
+  w.textContent = m.state === 'range' ? t.ovrRange : (m.state === 'bad' ? t.ovrBad : '');
+  const wiseOn = !isPlat(payer());
+  $('wiseCtl1').hidden = !wiseOn; $('wiseCtl2').hidden = !wiseOn;
+  const y = yearsN(), yw = $('nyrWarn');
+  yw.hidden = y.state === 'ok';
+  yw.classList.toggle('err', y.state === 'bad' || y.state === 'frac');
+  yw.textContent = y.state === 'bad' ? t.yrBad : (y.state === 'frac' ? t.yrFrac : (y.state === 'max' ? t.yrMax : ''));
+}
+function renderPayer() {
+  const t = T[lang], py = payer(), note = $('payerNote'), plat = isPlat(py);
+  ['inCard', 'asCard', 'yearCard'].forEach(id => { $(id).hidden = plat; });
+  if (py === 'direct') { note.hidden = true; return; }
+  note.hidden = false;
+  note.textContent = plat ? t.pnPlat : t.pnOther;
+  note.className = plat ? 'betan' : 'pnote';
+}
+function renderInfo(py) {
+  const t = T[lang], P = PLAT[py], res = $('results');
+  shareText = '';
+  $('resT').textContent = fill(t.infoT, { P: P.name });
+  showWin({ mode: 'empty', message: '' });
+  const no = ORDER.filter(id => statusOf(py, id) === 'no');
+  const cost = '<div class="noteblock"><p>' + esc(t.platNote[py]) + '</p><div class="ver"><span class="tag pub">' + esc(t.tPub) + '</span><span>' + esc(t.costDate) + ' ' + esc(fmtDate(PLAT_VERIFIED)) + ': <a href="' + P.fees + '" target="_blank" rel="noopener">' + esc(fill(t.platLinkT, { P: P.name })) + ' ↗</a></span></div></div>';
+  const nol = no.length ? '<div class="noteblock"><h3>' + esc(t.noT) + '</h3><p class="hint">' + esc(fill(t.noLead, { P: P.name })) + '</p><ul class="plain">' +
+    no.map(id => '<li><b>' + esc(rname(id)) + '</b> <span class="tag mute">' + esc(t.notListedTag) + '</span>: ' + esc(((PAYER_NO[py] || {})[lang]) || '') + ' ' + linkList((PAYER_NO[py] || {}).links || []) + '</li>').join('') + '</ul></div>' : '';
+  res.innerHTML = '<div class="noteblock"><p>' + esc(fill(t.infoLead, { P: P.name })) + '</p><div class="yact"><button type="button" class="btn alt" id="goDirect">' + esc(t.goDirect) + '</button></div></div>' + cost + nol;
+}
+function renderResults() {
+  const t = T[lang], res = $('results'), r = effectiveRate(), A = parseFloat($('amt').value), py = payer();
+  if (isPlat(py)) { $('yearHead').innerHTML = ''; $('shareBtn').hidden = true; renderInfo(py); return; }
+  $('resT').textContent = t.resT;
+  if (!r || !(A > 0)) {
+    $('yearHead').innerHTML = ''; $('shareBtn').hidden = true; shareText = '';
+    const msg = rateState.status === 'loading' && !r ? t.loading : t.need;
+    res.innerHTML = '<p class="noteblock">' + esc(msg) + '</p>';
+    showWin({ mode: 'empty', message: msg });
+    return;
+  }
+  const rows = calcRails(A, r.value, options());
+  const ref = A * r.value, rn = rateName(r);
+  renderYear(rows, py, A, r);
+  const tie = tied(rows) ? '<div class="tie" role="note">' + esc(t.tieN) + '</div>' : '';
+  const rk = ranked(rows), wr = rows.filter(x => UNRANKED.indexOf(x.id) >= 0);
+  const best = rk.find(x => !x.na) || null;
+  if (best) showWin({ kicker: tied(rows) ? t.tieN : t.topLbl, who: rname(best.id), sub: t.recv, value: best.pesos, format: mx });
+  else showWin({ mode: 'empty', message: t.naT + '. ' + t.naU });
+  const paint = (x, i, unr) => {
+    const meta = RAILS[x.id];
+    const notes = t[NOTES[x.id]].map(n => '<li>' + esc(n) + '</li>').join('');
+    const bd = x.items.map(it => '<tr><td>' + esc(t[it.k]) + '<span class="tag ' + it.t + '">' + esc(t[{ pub: 'tPub', est: 'tEst', sup: 'tSup' }[it.t]]) + '</span></td><td>−' + mx(it.mxn) + '</td></tr>').join('');
+    const links = linkList(meta.links);
+    const pct = x.na || !(ref > 0) ? 0 : Math.max(0, Math.min(100, x.pesos / ref * 100));
+    const first = !unr && best && x.id === best.id;
+    const tags = (first ? '<span class="tag topl">' + esc(t.topLbl) + '</span>' : '') +
+      (py === 'other' ? '<span class="tag chk">' + esc(t.verifyOther) + '</span>' : '') +
+      (!x.na && x.lossPct >= 20 ? '<span class="tag est">' + esc(t.bad) + '</span>' : '') +
+      (x.id === 'paypal' ? '<span class="tag est">' + esc(t.ppEstTag) + '</span>' : '') +
+      (x.id === 'wise' ? '<span class="tag est">' + esc(t.wiseNear) + '</span>' : '');
+    let delta = '';
+    if (!x.na && best && x.id !== best.id) {
+      const d = best.pesos - x.pesos;
+      delta = '<span class="fig-delta">' + (d >= 0 ? '−' : '+') + mx(Math.abs(d)) + ' ' + esc(PRES[lang].deltaLbl) + '</span>';
+    }
+    let lossHtml = '';
+    if (!x.na && x.loss < 0.005) lossHtml = '<div class="loss zero">' + esc(fill(t.none, { R: rn })) + '</div>';
+    else if (!x.na) lossHtml = '<div class="loss">−' + mx(x.loss) + ' · −' + pf(x.lossPct) + ' <small>' + esc(fill(t.loss, { R: rn })) + '</small></div>';
+    const got = x.na ? esc(t.naT) : mx(x.pesos);
+    const extra = x.extra ? '<div class="extra">' + esc(t.wiseExtra) + ' <b>' + us(x.extra.usd) + ' (' + mx(x.extra.mxn) + ')</b></div>' : '';
+    const ppNote = x.id === 'paypal' && !x.na ? '<div class="extra">' + esc(t.ppEstNote) + '</div>' : '';
+    const wiseFar = x.id === 'wise' && (A < RULES.wise.nearMin || A > RULES.wise.nearMax) ? '<div class="extra">' + esc(t.wiseFar) + '</div>' : '';
+    const legal = '<div class="sits"><b>' + esc(t.sitsT) + '</b> ' + esc(t.sits[x.id]) + (x.id === 'arq' ? ' ' + esc(t.arqLegal) + ' ' + esc(t.arqRes) + ' ' + linkList([[ARQ_TR, 'arqfinance.com/es-MX/transparency']]) : '') + '</div>';
+    const verTxt = meta.ver ? (meta.chg ? fill(t.pubChg, { D: fmtDate(meta.ver) }) : t.pubOn + ' ' + fmtDate(meta.ver)) : t.pubOn + ' ' + fmtDate(VERIFIED);
+    const open = !!openMap[x.id];
+    const enter = !barsSeen[x.id] && !reduceMotion();
+    barsSeen[x.id] = true;
+    const side = unr ? '<span class="hint">' + esc(t.wiseCardN) + '</span>' : '';
+    return '<div class="rrow' + (unr ? ' is-side' : '') + '" data-id="' + x.id + '">' +
+      '<button type="button" class="rrow-btn" data-toggle="' + x.id + '" aria-expanded="' + (open ? 'true' : 'false') + '" aria-controls="det-' + x.id + '">' +
+      '<span class="rank">' + (unr ? '' : (rk.indexOf(x) + 1)) + '</span>' +
+      '<span class="who"><span class="who-name">' + esc(unr ? t.wiseCardT : rname(x.id)) + '</span><span class="who-sub">' + esc(meta.sub[lang]) + '</span>' + side +
+      (tags ? '<span class="tags">' + tags + '</span>' : '') + '</span>' +
+      '<span class="fig"><span class="fig-amt" data-key="' + x.id + '" data-pesos="' + (x.na ? '' : String(x.pesos)) + '" data-exact="' + esc(got) + '">' + esc(got) + '</span>' +
+      (x.na ? '<span class="fig-delta">' + esc(t.naU) + '</span>' : delta) + '</span>' +
+      '<span class="bar" aria-hidden="true"><i class="' + (enter ? 'bar-enter' : '') + '" style="--w:' + (pct / 100).toFixed(4) + ';--i:' + i + '"></i></span></button>' +
+      '<div class="rdetail" id="det-' + x.id + '"' + (open ? '' : ' hidden') + '>' + lossHtml + extra + ppNote + wiseFar + legal +
+      (bd ? '<table class="bd">' + bd + '</table>' : '') + '<ul class="notes">' + notes + '</ul>' +
+      '<div class="ver"><span class="tag pub">' + esc(t.tPub) + '</span> <span>' + esc(verTxt) + '. ' + esc(t.source) + ': ' + links + '</span></div></div></div>';
+  };
+  res.innerHTML = tie + rk.map((x, i) => paint(x, i, false)).join('') + wr.map((x, i) => paint(x, rk.length + i, true)).join('');
+  res.querySelectorAll('.fig-amt[data-pesos]').forEach(el => {
+    if (el.dataset.pesos === '') return;
+    countUp(el, parseFloat(el.dataset.pesos), mx);
+  });
+}
+function renderAll() {
+  const before = capturePos();
+  renderStatic();
+  renderPayer();
+  renderRate();
+  renderResults();
+  flipFrom(before);
+  syncDock();
+  fitAmounts();
+}
 function setLang(l) { lang = l; try { localStorage.setItem('cml-lang', l); } catch (e) {} renderAll(); }
 
 $('bES').addEventListener('click', () => setLang('es'));
 $('bEN').addEventListener('click', () => setLang('en'));
 $('shareBtn').addEventListener('click', share);
-$('results').addEventListener('toggle', e => { const d = e.target; if (d && d.dataset && d.dataset.id) openMap[d.dataset.id] = d.open; }, true);
-$('results').addEventListener('click', e => { if (e.target && e.target.id === 'goDirect') { document.querySelector('input[name="payer"][value="direct"]').checked = true; renderAll(); window.scrollTo(0, 0); } });
+$('results').addEventListener('click', e => {
+  const node = e.target && e.target.closest ? e.target : (e.target && e.target.parentElement);
+  const btn = node && node.closest ? node.closest('[data-toggle]') : null;
+  if (btn) {
+    const id = btn.getAttribute('data-toggle');
+    const panel = document.getElementById('det-' + id);
+    if (!panel) return;
+    const open = panel.hasAttribute('hidden');
+    if (open) panel.removeAttribute('hidden'); else panel.setAttribute('hidden', '');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    openMap[id] = open;
+    return;
+  }
+  if (e.target && e.target.id === 'goDirect') {
+    document.querySelector('input[name="payer"][value="direct"]').checked = true;
+    renderAll();
+    window.scrollTo(0, 0);
+  }
+});
 document.querySelectorAll('input[name="payer"]').forEach(el => el.addEventListener('change', renderAll));
 ['nyr', 'amt', 'ovr', 'ppAbroad', 'poConv', 'arqMode', 'arqSp', 'bbvaSp', 'wiseFund', 'wiseAbsorb'].forEach(id => {
   $(id).addEventListener('input', renderAll);
 });
-
+bootMotion();
+let pointerFocus = false;
+function keyboardFocus(el) {
+  if (pointerFocus || !el || !el.matches) return false;
+  try { return el.matches(':focus-visible'); } catch (e) { return false; }
+}
+function liftFocus(el) {
+  const dock = $('dock');
+  if (!keyboardFocus(el) || !dock || dock.hidden || !el.getBoundingClientRect) return;
+  const er = el.getBoundingClientRect();
+  const dr = dock.getBoundingClientRect();
+  if (er.width < 1 || er.height < 1) return;
+  if (er.bottom > dr.top - 4 && er.top < dr.bottom) window.scrollBy(0, er.bottom - dr.top + 16);
+}
+document.addEventListener('pointerdown', () => { pointerFocus = true; }, true);
+document.addEventListener('touchstart', () => { pointerFocus = true; }, true);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Tab' || e.key === 'ArrowUp' || e.key === 'ArrowDown' || e.key === 'ArrowLeft' || e.key === 'ArrowRight') pointerFocus = false;
+}, true);
+document.addEventListener('focusin', (e) => {
+  if (!keyboardFocus(e.target)) return;
+  liftFocus(e.target);
+  requestAnimationFrame(() => { if (keyboardFocus(document.activeElement)) liftFocus(document.activeElement); });
+});
+window.addEventListener('scroll', syncDock, { passive: true });
+window.addEventListener('resize', () => { syncDock(); fitAmounts(); });
+if (document.fonts && document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', fitAmounts);
+$('dock').addEventListener('pointerdown', (e) => { e.preventDefault(); e.stopPropagation(); });
+$('dock').addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); });
 renderAll();
 loadRate().then(r => { rateState = r; renderAll(); });
+
 </script>
 </body>
 </html>
