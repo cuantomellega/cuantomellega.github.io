@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
 <meta name="google-site-verification" content="WywnAtFSTyrHcZNU1RzhveUrDjRqoTpaKjNL_opW8HE">
-<title>¿CuántoMeLlega? | Cuántos pesos recibes de un pago en dólares</title>
-<meta name="description" content="Compara cuántos pesos mexicanos te llegan de un pago en USD por PayPal, Payoneer, ARQ, BBVA y Wise, según quién te paga (cliente directo; Upwork, Fiverr y Deel solo como información beta). Tarifas publicadas con fecha y fuente.">
+<title>Calculadora PayPal a pesos mexicanos: cuánto te llega | ¿CuántoMeLlega?</title>
+<meta name="description" content="Calculadora PayPal a pesos mexicanos: cuánto te llega. Compara también Payoneer, ARQ, BBVA y Wise, con tarifas publicadas, fecha y fuente. Por ¿CuántoMeLlega?">
 <meta name="theme-color" content="#0b7a4b">
 <link rel="canonical" href="https://cuantomellega.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://cuantomellega.github.io/">
-<meta property="og:title" content="¿CuántoMeLlega? ¿Cuántos pesos recibes por un pago en dólares?">
-<meta property="og:description" content="Compara PayPal, Payoneer, ARQ, BBVA y Wise con tarifas publicadas, fecha y fuente. Sin enlaces de afiliado.">
+<meta property="og:title" content="Calculadora PayPal a pesos mexicanos: cuánto te llega | ¿CuántoMeLlega?">
+<meta property="og:description" content="Calculadora PayPal a pesos mexicanos: cuánto te llega. Compara también Payoneer, ARQ, BBVA y Wise, con tarifas publicadas, fecha y fuente. Por ¿CuántoMeLlega?">
 <meta property="og:locale" content="es_MX">
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -559,8 +559,16 @@ footer { color: var(--muted); font-size: 0.9rem; margin-top: 18px; }
    </div>
   </div>
  </header>
- <h1 data-i="h1">¿Cuántos pesos recibes por un pago en dólares?</h1>
+ <h1 data-i="h1">Calculadora PayPal a pesos mexicanos: cuánto te llega</h1>
  <p class="lead" data-i="lead">Escribe cuánto te pagan en USD y compara, con tarifas publicadas, cuántos pesos recibes por cada vía.</p>
+
+ <section class="block" id="exCard" aria-labelledby="exT">
+  <h2 id="exT" data-i="exT">Ejemplo: cuánto te llega de US$100</h2>
+  <p data-i="exP">Con el tipo de cambio de referencia USD/MXN (calculado a partir de las tasas diarias del BCE) de MX$18.4635 por US$1, al 17 nov 2026 (consultado en frankfurter.dev), un pago de US$100 deja, con los supuestos por defecto de esta página y en el orden de esta calculadora, un resultado estimado de MX$1,782.00 por ARQ, MX$1,780.36 por Payoneer, MX$1,673.78 por PayPal y MX$1,185.76 por BBVA. ARQ y Payoneer quedan prácticamente empatados (menos de 1% de diferencia); el orden entre ellos depende de los supuestos. Es un ejemplo ilustrativo. La calculadora de esta página muestra las cifras con el tipo de cambio vigente.</p>
+  <p data-i="exWise">Si quien te paga ya usa Wise, el resultado estimado es MX$1,832.19. Queda fuera del ranking: solo aplica en ese caso, no es una vía que puedas abrir tú desde México. La comisión se escala de forma proporcional a partir de la cotización de Wise para US$1,000 (débito directo, US$7.67); con US$100, esta página la trata solo como una aproximación. El modelo no indica si esa escala deja la comisión más baja o más alta que la real.</p>
+  <p class="hint" data-i="exH">Supuestos por defecto: PayPal con quien paga fuera de México; Payoneer con conversión estimada al 2.6%; ARQ personal (3 USD por pago y margen estimado de 0.5%); BBVA con margen estimado de 1.5%.</p>
+  <p data-i="exAff">¿CuántoMeLlega? es independiente y no está afiliado a PayPal, Payoneer, ARQ, BBVA ni Wise.</p>
+ </section>
 
  <section class="answer" id="inCard" aria-labelledby="inT">
   <div class="answer-grid">
@@ -802,8 +810,13 @@ const RAILS = {
 
 const T = {
  es: {
-  h1: '¿Cuántos pesos recibes por un pago en dólares?',
+  h1: 'Calculadora PayPal a pesos mexicanos: cuánto te llega',
   lead: 'Escribe cuánto te pagan en USD y compara, con tarifas publicadas, cuántos pesos recibes por cada vía.',
+  exT: 'Ejemplo: cuánto te llega de US$100',
+  exP: 'Con el tipo de cambio de referencia USD/MXN (calculado a partir de las tasas diarias del BCE) de MX$18.4635 por US$1, al 17 nov 2026 (consultado en frankfurter.dev), un pago de US$100 deja, con los supuestos por defecto de esta página y en el orden de esta calculadora, un resultado estimado de MX$1,782.00 por ARQ, MX$1,780.36 por Payoneer, MX$1,673.78 por PayPal y MX$1,185.76 por BBVA. ARQ y Payoneer quedan prácticamente empatados (menos de 1% de diferencia); el orden entre ellos depende de los supuestos. Es un ejemplo ilustrativo. La calculadora de esta página muestra las cifras con el tipo de cambio vigente.',
+  exWise: 'Si quien te paga ya usa Wise, el resultado estimado es MX$1,832.19. Queda fuera del ranking: solo aplica en ese caso, no es una vía que puedas abrir tú desde México. La comisión se escala de forma proporcional a partir de la cotización de Wise para US$1,000 (débito directo, US$7.67); con US$100, esta página la trata solo como una aproximación. El modelo no indica si esa escala deja la comisión más baja o más alta que la real.',
+  exH: 'Supuestos por defecto: PayPal con quien paga fuera de México; Payoneer con conversión estimada al 2.6%; ARQ personal (3 USD por pago y margen estimado de 0.5%); BBVA con margen estimado de 1.5%.',
+  exAff: '¿CuántoMeLlega? es independiente y no está afiliado a PayPal, Payoneer, ARQ, BBVA ni Wise.',
   amtLabel: 'Monto que te pagan (US$)',
   ovrLabel: 'Tipo de cambio manual (opcional, MX$ por US$1)', ovrHint: 'Si lo llenas, se usa en lugar del tipo de cambio de referencia. Útil si las dos fuentes fallan.',
   ovrRange: 'Ojo: un tipo de cambio fuera de 10 a 30 es poco común. Revisa que no sea un error.', ovrBad: 'Escribe un número mayor que cero. Se ignora mientras tanto.',
@@ -834,7 +847,7 @@ const T = {
   f5: 'Hecho por un desarrollador independiente',
   f6: 'Analítica sin cookies y con panel privado: la dirección IP se procesa de forma temporal y se guardan datos técnicos agregados, no lo que escribes en la calculadora ({link}). El tipo de cambio se consulta en frankfurter.dev y, si falla, open.er-api.com.',
   f6link: 'Política de privacidad de GoatCounter',
-  title: '¿CuántoMeLlega? | Cuántos pesos recibes de un pago en dólares',
+  title: 'Calculadora PayPal a pesos mexicanos: cuánto te llega | ¿CuántoMeLlega?',
   wiseCardT: 'Si tu cliente paga con Wise',
   wiseCardN: 'Fuera del ranking: solo aplica si quien te paga ya usa Wise; no es una vía que puedas abrir tú desde México.',
   arqRes: 'Según ARQ, USDs lo emite Bridge (una empresa de Stripe) y está respaldado 1:1 por efectivo y bonos del Tesoro de EE.UU. de corto plazo, con reservas publicadas (consultado 3 nov 2026):',
@@ -903,8 +916,13 @@ const T = {
   nWise: ['Residentes en México pueden abrir cuenta Wise para enviar pesos al extranjero; no encontramos que ofrezca saldo ni datos de cuenta en USD. Aquí solo aplica si quien te paga usa Wise y deposita en tu CLABE.', 'Wise publica el costo por forma de pago para enviar US$1,000 de EE.UU. a México (verificado 3 nov 2026, puede cambiar): saldo US$5.71, débito directo US$7.67, transferencia bancaria US$12.07, tarjeta de débito US$18.20, tarjeta de crédito US$66.99. Las tarjetas varían según el tipo (por ejemplo, de US$41.11 a US$70.10 en otras variantes). Aquí se escala a otros montos (estimación). Usa tipo medio, que puede diferir del tipo de cambio de referencia que uses aquí.']
  },
  en: {
-  h1: 'How many pesos do you get from a dollar payment?',
+  h1: 'PayPal to Mexican pesos calculator: how much you get',
   lead: 'Enter how much you are paid in USD and compare, using published fees, how many pesos you get through each route.',
+  exT: 'Example: how much you get from US$100',
+  exP: 'With the USD/MXN reference rate (calculated from daily ECB rates) of MX$18.4635 per US$1, as of Nov 17, 2026 (retrieved from frankfurter.dev), a US$100 payment leaves, using the default assumptions on this page, in the ranking order of this calculator, an estimated result of MX$1,782.00 via ARQ, MX$1,780.36 via Payoneer, MX$1,673.78 via PayPal and MX$1,185.76 via BBVA. ARQ and Payoneer are practically tied (under 1% apart); their order depends on the assumptions. This is an illustrative example. The calculator on this page shows the figures with the current rate.',
+  exWise: 'If the person paying you already uses Wise, the estimated result is MX$1,832.19. It is outside the ranking: it only applies in that case, and it is not a route you can open yourself from Mexico. The fee is scaled proportionally from the Wise quote for US$1,000 (direct debit, US$7.67); at US$100, this page treats that fee as only an approximation. The model does not say whether that scaling understates or overstates the real fee.',
+  exH: 'Default assumptions: PayPal with the payer outside Mexico; Payoneer with an estimated 2.6% conversion; ARQ personal (US$3 per payment and an estimated 0.5% margin); BBVA with an estimated 1.5% margin.',
+  exAff: '¿CuántoMeLlega? is independent and not affiliated with PayPal, Payoneer, ARQ, BBVA or Wise.',
   amtLabel: 'Amount you are paid (US$)',
   ovrLabel: 'Manual exchange rate (optional, MX$ per US$1)', ovrHint: 'If filled in, it replaces the reference rate. Useful if both sources fail.',
   ovrRange: 'Heads up: a rate outside 10 to 30 is unusual. Check it is not a typo.', ovrBad: 'Enter a number above zero. It is ignored for now.',
@@ -935,7 +953,7 @@ const T = {
   f5: 'Made by an independent developer',
   f6: 'Cookie-free analytics with a private dashboard: the IP address is processed temporarily, and aggregate technical data is stored, not what you type in the calculator ({link}). The exchange rate comes from frankfurter.dev and, if that fails, open.er-api.com.',
   f6link: 'GoatCounter privacy policy',
-  title: '¿CuántoMeLlega? | How many pesos you get from a dollar payment',
+  title: 'PayPal to Mexican pesos calculator: how much you get | ¿CuántoMeLlega?',
   wiseCardT: 'If your client pays with Wise',
   wiseCardN: 'Outside the ranking: it only applies if the person paying you already uses Wise; it is not a route you can open yourself from Mexico.',
   arqRes: 'According to ARQ, USDs is issued by Bridge (a Stripe company) and backed 1:1 by cash and short-term US Treasuries, with published reserves (checked Nov 3, 2026):',
